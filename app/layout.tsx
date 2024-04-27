@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { palettemosaic, recursive } from "@/lib/utils";
+import Header from "./components/layouts/Header/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${palettemosaic.variable}`}>
       <body>
+        <Header />
         {children}
       </body>
     </html>
