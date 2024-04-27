@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Recursive } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { palettemosaic, recursive } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const recursive = Recursive({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-recursive"
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${recursive.variable}`}>
+    <html lang="ja" className={`${palettemosaic.variable}`}>
       <body>
         {children}
       </body>

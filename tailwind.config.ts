@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        recursive: "var(--font-recursive)",
+        palettemosaic: "var(--font-palettemosaic)"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
