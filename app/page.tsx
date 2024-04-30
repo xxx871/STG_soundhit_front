@@ -22,7 +22,7 @@ export default function Home() {
           </SelectContent>
         </Select>
       </div>
-      <div className="mt-16 w-16 mx-auto font-palettemosaic">
+      <div className="mt-16 w-16 mx-auto font-palettemosaic mb-24">
         <Button variant="outline">START</Button>
       </div>
     </main>
