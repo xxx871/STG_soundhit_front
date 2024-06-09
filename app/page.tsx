@@ -1,6 +1,6 @@
 
+import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./components/elements/Select/Select";
-import { Button } from "./components/elements/Button/Button";
 
 export default function Home() {
   return (
