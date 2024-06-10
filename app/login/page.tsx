@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import ExternalAuthButton from '@/features/auth/components/ExternalAuthButton'
 import LoginForm from '@/features/auth/components/LoginForm'
 import Link from 'next/link'
 import React from 'react'
@@ -18,8 +18,8 @@ const Login = () => {
         </div>
       </div>
       <div className="flex flex-col gap-3 text-white">
-        <Button/>
-        <Button/>
+        <ExternalAuthButton provider="github" label="Github"/>
+        <ExternalAuthButton provider="google" label="Google" />
       </div>
       <div className="text-center mt-4">
         <Link href="/signup" className="text-white hover:underline text-xl">
