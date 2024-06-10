@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/lib/axios";
 import Cookies from 'js-cookie';
 
-export interface SignUpData {
+interface SignUpData {
   name: string;
   email: string;
   password: string;
@@ -10,7 +10,7 @@ export interface SignUpData {
 
 export const signUp =  async (data: SignUpData) => {
   try {
-    const response = await axiosInstance.post("auth", {
+    const response = await axiosInstance.post("/auth", {
       name: data.name,
       email: data.email,
       password: data.password,
