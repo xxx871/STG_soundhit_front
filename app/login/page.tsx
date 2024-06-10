@@ -22,7 +22,7 @@ const Login = () => {
         <Button/>
       </div>
       <div className="text-center mt-4">
-        <Link href={"/signup"} className="text-white hover:underline text-xl">
+        <Link href="/signup" className="text-white hover:underline text-xl">
           初めてご利用の方はこちら
         </Link>
       </div>

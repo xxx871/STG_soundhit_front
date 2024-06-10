@@ -1,7 +1,11 @@
+import LogoutButton from '@/features/auth/components/LogoutButton';
+import { getUserSession } from '@/lib/session';
 import Link from 'next/link'
 import React from 'react'
 
-const Header = () => {
+const Header = async () => {
+  const userSession = await getUserSession();
+
   return (
     <div className="divide-y border-gray-200 dark:border-gray-800 border-b bg-blue-900">
       <div className="px-4 py-2 md:py-2 lg:px-6">
@@ -10,15 +14,24 @@ const Header = () => {
             おんぴしゃ
           </Link>
           <nav className="flex justify-end items-center space-x-6 text-2xl">
-            <Link href="/about" className="font-medium text-white transition-colors hover:text-gray-300">
-              遊び方
-            </Link>
-            <Link href="/rank" className="font-medium text-white transition-colors hover:text-gray-300">
+            {/* <TutorialModal /> */}
+            <Link href="/ranking" className="font-medium text-white transition-colors hover:text-gray-300">
               ランキング
             </Link>
-            <Link href="/login" className="bg-black py-3 px-4 text-white rounded-md font-medium">
-              ログイン
-            </Link>
+            {userSession.is_login ? (
+              <>
+                <Link href="/profile">プロフィール</Link>
+                <LogoutButton
+                  type="button"
+                >
+                  ログアウト
+                </LogoutButton>
+              </>
+            ) : (
+              <Link href="/login" className="bg-black py-3 px-4 text-white rounded-md font-medium">
+                ログイン
+              </Link>
+            )}
           </nav>
         </div>
       </div>
