@@ -7,7 +7,7 @@ const SignUp = () => {
     <div className="max-w-sm mx-auto mt-10">
       <SignupForm />
       <div className="text-center mt-4">
-        <Link href={"/login"} className="text-white hover:underline text-xl">
+        <Link href="/login" className="text-white hover:underline text-xl">
           すでに登録済みの方はこちら
         </Link>
       </div>
