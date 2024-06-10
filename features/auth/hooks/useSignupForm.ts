@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { signUpFormSchema } from "../validation/signUpFormSchema";
 import { z } from "zod";
-import { signUp } from "../api/signup";
+import { signUp } from "../api/signUp";
 import { useState } from "react";
 
 export const useSignupForm = () => {
