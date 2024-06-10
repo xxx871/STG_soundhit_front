@@ -5,6 +5,7 @@ import React from 'react'
 
 const Header = async () => {
   const userSession = await getUserSession();
+  const isLoggedIn = userSession ? userSession.is_login : false;
 
   return (
     <div className="divide-y border-gray-200 dark:border-gray-800 border-b bg-blue-900 h-16 flex items-center">
@@ -18,7 +19,7 @@ const Header = async () => {
             <Link href="/ranking" className="font-medium text-white transition-colors hover:text-gray-300">
               ランキング
             </Link>
-            {userSession.is_login ? (
+            {isLoggedIn ? (
               <>
                 <Link href="/profile">プロフィール</Link>
                 <LogoutButton
