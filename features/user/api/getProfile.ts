@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/lib/axios";
 import { cookies } from "next/headers";
 
-export const fetchProfile = async () => {
+export const getProfile = async () => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get('access-token')?.value;
   const client = cookieStore.get('client')?.value;
