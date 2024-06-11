@@ -1,30 +1,24 @@
+import ModeSelectWithState from "@/features/game/select/components/ModeSelectWithState";
+import { getModes } from "@/lib/api/getModes";
+import { Mode } from "@/types/interface";
 
-import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./components/elements/Select/Select";
+export default async function Home() {
+  const modes: Mode[] = await getModes();
+  const modesWithPaths = modes.map(mode => ({
+    ...mode,
+    path: mode.id.toString(),
+  }));
 
-export default function Home() {
   return (
     <main className="text-white">
       <div>
-        <h1 className="text-9xl mt-16 text-center font-palettemosaic font-bold">
+      <h1 className="text-9xl mt-16 text-center font-palettemosaic font-bold">
           おんぴしゃ
         </h1>
       </div>
-      <div className="mt-16 w-72 mx-auto text-2xl font-palettemosaic text-slate-300">
-        <Select>
-          <SelectTrigger className="w-288px]">
-            <SelectValue placeholder="モードせんたく"/>
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="light">つうじょうモード</SelectItem>
-            <SelectItem value="dark">れんしゅうモード</SelectItem>
-            <SelectItem value="system">ハモりモード</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="mt-16 w-16 mx-auto font-palettemosaic mb-24">
-        <Button variant="outline">START</Button>
+      <div className="mt-16 flex flex-col items-center justify-center">
+        <ModeSelectWithState modes={modesWithPaths} />
       </div>
     </main>
-  );
+  )
 }
