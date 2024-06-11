@@ -4,10 +4,6 @@ import { Mode } from "@/types/interface";
 
 export default async function Home() {
   const modes: Mode[] = await getModes();
-  const modesWithPaths = modes.map(mode => ({
-    ...mode,
-    path: mode.id.toString(),
-  }));
 
   return (
     <main className="text-white">
@@ -17,7 +13,7 @@ export default async function Home() {
         </h1>
       </div>
       <div className="mt-16 flex flex-col items-center justify-center">
-        <ModeSelectWithState modes={modesWithPaths} />
+      <ModeSelectWithState modes={modes} />
       </div>
     </main>
   )
