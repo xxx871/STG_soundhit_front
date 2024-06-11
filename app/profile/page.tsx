@@ -1,11 +1,11 @@
-import { fetchProfile } from "@/features/user/api/fetchProfile";
+import { getProfile } from "@/features/user/api/getProfile";
 import UserProfile from "@/features/user/components/UserProfile";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from 'react'
 
 const Profile = async () => {
-  const userData = await fetchProfile();
+  const userData = await getProfile();
   if (!userData) {
     redirect("/login");
   }
