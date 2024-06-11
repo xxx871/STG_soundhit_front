@@ -6,11 +6,11 @@ import { Mode } from '@/types/interface';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
-export interface ModeSelectWithStateProps {
+export interface ModeSelectProps {
   modes: Mode[];
 }
 
-export const ModeSelectWithState = ({ modes }: ModeSelectWithStateProps) => {
+export const ModeSelect = ({ modes }: ModeSelectProps) => {
   const [selectedMode, setSelectedMode] = useState<Mode | null>(null)
   const router = useRouter();
 
@@ -71,4 +71,4 @@ export const ModeSelectWithState = ({ modes }: ModeSelectWithStateProps) => {
   )
 }
 
-export default ModeSelectWithState
+export default ModeSelect

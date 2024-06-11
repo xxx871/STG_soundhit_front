@@ -1,4 +1,4 @@
-import ModeSelectWithState from "@/features/game/select/components/ModeSelectWithState";
+import ModeSelect from "@/features/game/select/components/ModeSelect";
 import { getModes } from "@/lib/api/getModes";
 import { Mode } from "@/types/interface";
 
@@ -13,7 +13,7 @@ export default async function Home() {
         </h1>
       </div>
       <div className="mt-16 flex flex-col items-center justify-center">
-      <ModeSelectWithState modes={modes} />
+      <ModeSelect modes={modes} />
       </div>
     </main>
   )

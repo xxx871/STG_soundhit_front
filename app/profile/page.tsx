@@ -1,5 +1,5 @@
-import { getProfile } from "@/features/user/api/getProfile";
 import UserProfile from "@/features/user/components/UserProfile";
+import { getProfile } from "@/lib/api/getProfile";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from 'react'
