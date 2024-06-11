@@ -27,5 +27,4 @@ export interface Note {
 export interface Mode {
   id: number;
   name: string;
-  path: string;
 };
