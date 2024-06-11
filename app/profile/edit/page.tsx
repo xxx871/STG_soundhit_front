@@ -1,7 +1,7 @@
-import { getProfile } from '@/features/user/api/getProfile'
 import EditProfileForm from '@/features/user/components/EditProfileForm';
 import { getGenders } from '@/lib/api/getGenders';
 import { getNotes } from '@/lib/api/getNotes';
+import { getProfile } from '@/lib/api/getProfile';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
