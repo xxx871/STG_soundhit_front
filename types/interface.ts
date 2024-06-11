@@ -23,3 +23,9 @@ export interface Note {
   ja_note_name: string;
   en_note_name: string;
 };
+
+export interface Mode {
+  id: number;
+  name: string;
+  path: string;
+};
