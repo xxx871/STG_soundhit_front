@@ -36,7 +36,7 @@ export const ModeSelect = ({ modes }: ModeSelectProps) => {
           alert('無効なモードです');
           return;
       }
-      router.push(`${path}?mode=${selectedMode.id}`);
+      router.push(`${path}?modeId=${selectedMode.id}`);
     } else {
       alert('モードを選択してください');
     }

@@ -38,7 +38,6 @@ const EasyGame: React.FC<EasyGameProps> = ({ userInfo, onPlayNote }) => {
         } else {
           const genderId = parseInt(searchParams.get('genderId') || '', 10);
           if (!isNaN(genderId)) {
-            console.log(`Fetching notes for genderId: ${genderId}`);
             notes = await getGenderNotesRange(genderId);
           }
         }
