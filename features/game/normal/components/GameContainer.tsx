@@ -1,13 +1,14 @@
 "use client"
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import EasyGame from './EasyGame';
 import MediumGame from './MediumGame';
 import HardGame from './HardGame';
 import { GameUser, Note } from '@/types/interface';
 import VoiceAnalysis from '../../components/VoiceAnalysis';
 import { Button } from '@/components/ui/button';
+import useMatchCount from '../../hooks/useMatchCount';
 
 interface GameContainerProps {
   userInfo: GameUser;
@@ -22,32 +23,24 @@ const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
   const router = useRouter();
   const [targetNote, setTargetNote] = useState<string | null>(null);
   const [isMatch, setIsMatch] = useState<boolean | null>(null);
-  const [matchCount, setMatchCount] = useState<number>(0);
   const [detectedPitches, setDetectedPitches] = useState<number[]>([]);
+  const { matchCount, incrementMatchCount, resetMatchCount } = useMatchCount();
 
   const handlePlayNote = (note: string) => {
     setTargetNote(note);
   };
 
-  useEffect(() => {
-    const storedMatchCount = sessionStorage.getItem('matchCount');
-    if (storedMatchCount) {
-      setMatchCount(parseInt(storedMatchCount, 10));
-    }
-  }, []);
-
   const handleAnalysisResult = (result: boolean) => {
     setIsMatch(result);
     if (result) {
-      setMatchCount(prevCount => {
-        const newCount = prevCount + 1;
-        sessionStorage.setItem('matchCount', newCount.toString()); // 一致回数をセッションストレージに保存
-        return newCount;
-      });
+      incrementMatchCount();
     } else {
-      setMatchCount(0);
-      sessionStorage.setItem('matchCount', '0');
+      resetMatchCount();
     }
+  };
+
+  const handlePitchDetected = (pitch: number) => {
+    setDetectedPitches(prevPitches => [...prevPitches, pitch]);
   };
 
   const handleResultClick = () => {
@@ -57,10 +50,6 @@ const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
       genderId: genderId || '',
     }).toString();
     router.push(`/result?${queryParams}`);
-  };
-
-  const handlePitchDetected = (pitch: number) => {
-    setDetectedPitches(prevPitches => [...prevPitches, pitch]);
   };
 
   const renderGameComponent = () => {
