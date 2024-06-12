@@ -39,7 +39,7 @@ export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
       alert('性別を選択してください');
       return;
     }
-    const path = `/game?modeId=${modeId}&difficultyId=${selectedDifficult}&genderId=${selectedGender}`;
+    const path = `/normal?modeId=${modeId}&difficultyId=${selectedDifficult}&genderId=${selectedGender}`;
     router.push(path);
   };
 
