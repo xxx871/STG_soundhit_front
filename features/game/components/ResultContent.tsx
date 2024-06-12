@@ -1,6 +1,6 @@
 "use client"
 
-import { Note, User } from '@/types/interface'
+import { User } from '@/types/interface'
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react'
 import { updateScore } from '../api/updateScore';
@@ -8,10 +8,9 @@ import { Button } from '@/components/ui/button';
 
 interface resultContentProps {
   userInfo: User;
-  notes: Note[];
 }
 
-const ResultContent: React.FC<resultContentProps> = ({ userInfo, notes }) => {
+const ResultContent: React.FC<resultContentProps> = ({ userInfo }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const modeId = parseInt(searchParams.get('modeId') || '0', 10);
