@@ -6,9 +6,11 @@ import { Button } from '@/components/ui/button';
 interface VoiceAnalysisProps {
   targetNote: string;
   notes: Note[];
+  onResult: (isMatch: boolean) => void;
+  onPitchDetected: (pitch: number, note: string) => void;
 }
 
-const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes }) => {
+const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes, onResult, onPitchDetected }) => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [analyzing, setAnalyzing] = useState<boolean>(false);
   const [firstDetectedFrequency, setFirstDetectedFrequency] = useState<{ frequency: number, note: string } | null>(null);
@@ -55,6 +57,9 @@ const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes }) => {
             if (pitchesRef.current.length === 0) {
               const closestNote = findClosestNote(pitch);
               setFirstDetectedFrequency({ frequency: pitch, note: closestNote });
+              onPitchDetected(pitch, closestNote);
+              const isMatch = closestNote === targetNote;
+              onResult(isMatch);
             }
             pitchesRef.current.push(pitch);
           }
@@ -73,7 +78,7 @@ const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes }) => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <Button onClick={startRecording} disabled={isRecording} className="mt-16 w-72 text-2xl text-slate-300 text-center">
+      <Button onClick={startRecording} disabled={isRecording} className="mt-4 w-72 text-2xl text-slate-300 text-center">
         {isRecording ? 'Recording...' : 'Start Recording'}
       </Button>
       <div className="text-white mt-4 text-center">

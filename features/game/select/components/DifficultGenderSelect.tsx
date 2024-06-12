@@ -24,7 +24,7 @@ export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
   const [showGenderSelect, setShowGenderSelect] = useState<boolean>(true);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const modeId = searchParams.get('mode');
+  const modeId = searchParams.get('modeId');
 
   useEffect(() => {
     setShowGenderSelect(!userInfo || !userInfo.gender);
