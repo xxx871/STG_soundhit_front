@@ -5,6 +5,7 @@ import React from 'react'
 import { useEditForm } from '../hooks/useEditForm';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import ModalKeyboard from './ModalKeyboard';
 
 export interface EditProfileProps {
   userData: User;
@@ -100,7 +101,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
             {errors.user_low_note && <span>{errors.user_low_note.message}</span>}
           </div>
         </div>
-        {/* <ModalKeyboard notes={notes} /> */}
+        <ModalKeyboard notes={notes} />
         <div className="mt-4">
           {errorMessage && (
             <div className="mb-4 text-white">{errorMessage}</div>
