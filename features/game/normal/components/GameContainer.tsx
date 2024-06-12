@@ -5,13 +5,15 @@ import React, { useState } from 'react'
 import EasyGame from './EasyGame';
 import MediumGame from './MediumGame';
 import HardGame from './HardGame';
-import { GameUser } from '@/types/interface';
+import { GameUser, Note } from '@/types/interface';
+import VoiceAnalysis from '../../components/VoiceAnalysis';
 
-interface SwitchGameDifficultyProps {
+interface GameContainerProps {
   userInfo: GameUser;
+  notes: Note[];
 }
 
-const SwitchGameDifficulty: React.FC<SwitchGameDifficultyProps> = ({ userInfo }) => {
+const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
   const searchParams = useSearchParams();
   const difficulty = searchParams.get('difficultyId');
   const [targetNote, setTargetNote] = useState<string | null>(null)
@@ -38,9 +40,16 @@ const SwitchGameDifficulty: React.FC<SwitchGameDifficultyProps> = ({ userInfo })
     <div className="text-white">
       <div>
         {renderGameComponent()}
+        <h2 className="text-white text-center mt-16">音が流れた後、ボタンを押して音声を入力</h2>
+        {targetNote && (
+          <VoiceAnalysis
+            targetNote={targetNote}
+            notes={notes}
+          />
+        )}
       </div>
     </div>
   )
 }
 
-export default SwitchGameDifficulty
+export default GameContainer
