@@ -1,4 +1,4 @@
-import { Note, User } from '@/types/interface';
+import { Note, GameUser } from '@/types/interface';
 import React, { useEffect, useState } from 'react'
 import * as Tone from "tone";
 import { getUserNotesRange } from '../../api/getUserNotesRange';
@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 
 interface EasyGameProps {
   onPlayNote: (note: string) => void;
-  userInfo: User;
+  userInfo: GameUser;
 }
 
 const getRandomNote = (notes: Note[]): Note => {

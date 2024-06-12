@@ -5,11 +5,10 @@ import React, { useState } from 'react'
 import EasyGame from './EasyGame';
 import MediumGame from './MediumGame';
 import HardGame from './HardGame';
-import { User } from '@/types/interface';
+import { GameUser } from '@/types/interface';
 
 interface SwitchGameDifficultyProps {
-  userInfo: User;
-  
+  userInfo: GameUser;
 }
 
 const SwitchGameDifficulty: React.FC<SwitchGameDifficultyProps> = ({ userInfo }) => {

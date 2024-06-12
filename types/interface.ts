@@ -7,10 +7,17 @@ export interface Score {
 
 export interface User {
   name: string;
-  gender_id: number | null;
   gender: string | null;
   user_high_note: Note | null;
   user_low_note: Note | null;
+};
+
+export interface GameUser {
+  name: string;
+  gender: string | null;
+  user_high_note: Note | null;
+  user_low_note: Note | null;
+  gender_id: number;
 };
 
 export interface Gender {
