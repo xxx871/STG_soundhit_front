@@ -8,7 +8,7 @@ interface Note {
   frequency: number;
 }
 
-const ModalTrigger: React.FC<{ notes: Note[] }> = ({ notes }) => {
+const ModalKeyboard: React.FC<{ notes: Note[] }> = ({ notes }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const synth = new Tone.Synth().toDestination();
 
@@ -90,4 +90,4 @@ const ModalTrigger: React.FC<{ notes: Note[] }> = ({ notes }) => {
   );
 };
 
-export default ModalTrigger;
+export default ModalKeyboard;

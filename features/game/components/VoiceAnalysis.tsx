@@ -77,7 +77,7 @@ const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes, onResul
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center mt-4">
       <Button onClick={startRecording} disabled={isRecording} className="mt-4 w-72 text-2xl text-slate-300 text-center">
         {isRecording ? 'Recording...' : 'Start Recording'}
       </Button>

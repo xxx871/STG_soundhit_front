@@ -1,43 +1,37 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { loginFormSchema } from "../validation/loginFormSchema";
-import { z } from "zod";
-import { login } from "../api/login";
+import { useRouter } from "next/navigation"
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { passwordResetFormSchema } from "../validation/passwordResetFormSchema";
+import { z } from "zod";
+import { passwordReset } from "../api/passwordReset";
 
-export const useLoginForm = () => {
-  const router = useRouter();
+export const usePasswordResetForm = () => {
   const [serverError, setServerError] = useState<string | null>(null);
 
   const form = useForm({
     mode: "onChange",
-    resolver: zodResolver(loginFormSchema),
+    resolver: zodResolver(passwordResetFormSchema),
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
-  const onSubmit = async (value: z.infer<typeof loginFormSchema>) => {
-    const { email, password } = value;
+  const onSubmit = async (value: z.infer<typeof passwordResetFormSchema>) => {
+    const { email } = value;
     try {
-      const response = await login({
-        email,
-        password
+      const response = await passwordReset({
+        email
       });
 
       if (response.error) {
         console.log(response.error.message);
         throw response.error;
       }
-
-      router.push("/");
-      router.refresh();
     } catch (error: any) {
       setServerError(error.message);
     }
   };
 
   return { form, onSubmit, serverError };
-};
+}
