@@ -14,13 +14,6 @@ const PasswordChangeForm = () => {
     formState: { errors },
   } = form;
 
-  // const searchParams = useSearchParams();
-  // const reset_password_token = searchParams.get('reset_password_token');
-
-  // React.useEffect(() => {
-  //   form.setValue('reset_password_token', reset_password_token || '');
-  // }, [reset_password_token, form]);
-
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
