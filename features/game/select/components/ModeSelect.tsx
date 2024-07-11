@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from '@/components/ui/button';
+import { LoadingButton } from '@/app/components/elements/LoadingButton';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue, SelectGroup } from '@/components/ui/select';
 import { Mode } from '@/types/interface';
 import { useRouter } from 'next/navigation';
@@ -11,7 +11,8 @@ export interface ModeSelectProps {
 }
 
 export const ModeSelect = ({ modes }: ModeSelectProps) => {
-  const [selectedMode, setSelectedMode] = useState<Mode | null>(null)
+  const [selectedMode, setSelectedMode] = useState<Mode | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleModeSelect = (modeId: string) => {
@@ -19,8 +20,9 @@ export const ModeSelect = ({ modes }: ModeSelectProps) => {
     setSelectedMode(mode || null);
   };
 
-  const handleStartClick = () => {
+  const handleStartClick = async () => {
     if (selectedMode) {
+      setIsLoading(true);
       let path = '';
       switch (selectedMode.id) {
         case 1:
@@ -34,9 +36,10 @@ export const ModeSelect = ({ modes }: ModeSelectProps) => {
           break;
         default:
           alert('無効なモードです');
+          setIsLoading(false);
           return;
       }
-      router.push(`${path}?modeId=${selectedMode.id}`);
+      await router.push(`${path}?modeId=${selectedMode.id}`);
     } else {
       alert('モードを選択してください');
     }
@@ -59,13 +62,14 @@ export const ModeSelect = ({ modes }: ModeSelectProps) => {
         </SelectContent>
       </Select>
       <div className="mt-16 w-16 mx-auto font-palettemosaic mb-24">
-        <Button
+      <LoadingButton
           variant="outline"
           className="w-32 h-12 text-lg"
+          isLoading={isLoading}
           onClick={handleStartClick}
         >
           START
-        </Button>
+        </LoadingButton>
       </div>
     </div>
   )

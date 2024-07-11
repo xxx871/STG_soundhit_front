@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { updateScore } from '../api/updateScore';
 import { Button } from '@/components/ui/button';
 import { XIcon, TwitterShareButton, LineShareButton, LineIcon } from 'react-share';
+import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
 interface resultContentProps {
   userInfo: User;
@@ -14,6 +15,7 @@ interface resultContentProps {
 }
 
 const ResultContent: React.FC<resultContentProps> = ({ userInfo, modes, difficulties }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const searchParams = useSearchParams();
   const modeId = parseInt(searchParams.get('modeId') || '0', 10);
@@ -34,6 +36,7 @@ const ResultContent: React.FC<resultContentProps> = ({ userInfo, modes, difficul
   };
 
   const handlePlayAgain= () => {
+    setIsLoading(true);
     router.push(`/normal?modeId=${modeId}&difficultyId=${difficultyId}&genderId=${genderId}`);
   }
 
@@ -53,12 +56,16 @@ const ResultContent: React.FC<resultContentProps> = ({ userInfo, modes, difficul
           <p>連続で一致した回数: {matchCount}</p>
         </div>
         <div className="mt-16">
-          <Button onClick={handleBackToHome} className="mt-4 p-2 bg-blue-500 text-white">
+          <Button onClick={handleBackToHome} className="w-32 h-12 bg-blue-500 text-white">
             トップページへ戻る
           </Button>
-          <Button onClick={handlePlayAgain}>
+          <LoadingButton
+            onClick={handlePlayAgain}
+            className="bg-green-500 text-white w-32 h-12"
+            isLoading={isLoading}
+          >
             もう一度遊ぶ
-          </Button>
+          </LoadingButton>
         </div>
         <div className="flex items-center justify-center mt-4">
         <TwitterShareButton

@@ -1,9 +1,9 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useState } from 'react'
 import { logout } from '../api/logout';
-import { Button } from '@/components/ui/button';
+import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
 export interface ButtonProps {
   children: ReactNode;
@@ -15,21 +15,31 @@ const LogoutButton = ({
   children,
   type
 }: ButtonProps) => {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
   const handleLogout = async() => {
-    await logout();
-    router.push("/");
-    router.refresh();
+    setIsLoading(true);
+    try {
+      await logout();
+      router.push("/");
+      router.refresh();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <Button
+    <LoadingButton
       onClick={handleLogout}
       type={type}
+      isLoading={isLoading}
     >
       {children}
-    </Button>
-  )
-}
+    </LoadingButton>
+  );
+};
 
 export default LogoutButton

@@ -9,6 +9,7 @@ import { GameUser, Note } from '@/types/interface';
 import VoiceAnalysis from '../../components/VoiceAnalysis';
 import { Button } from '@/components/ui/button';
 import useMatchCount from '../../hooks/useMatchCount';
+import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
 interface GameContainerProps {
   userInfo: GameUser;
@@ -25,6 +26,7 @@ const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
   const [isMatch, setIsMatch] = useState<boolean | null>(null);
   const [detectedPitches, setDetectedPitches] = useState<number[]>([]);
   const { matchCount, incrementMatchCount, resetMatchCount } = useMatchCount();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handlePlayNote = (note: string) => {
     setTargetNote(note);
@@ -44,6 +46,7 @@ const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
   };
 
   const handleResultClick = () => {
+    setIsLoading(true);
     const queryParams = new URLSearchParams({
       difficultyId: difficulty || '',
       modeId: mode || '',
@@ -82,9 +85,13 @@ const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
         {isMatch !== null && (
           <div className="w-72 mx-auto text-2xl text-slate-300 text-center">
             <div>{isMatch ? '一致' : '不一致'}</div>
-            <Button onClick={handleResultClick} className="w-72 text-2xl text-center">
+            <LoadingButton
+              onClick={handleResultClick}
+              className="w-72 text-2xl text-center"
+              isLoading={isLoading}
+            >
               結果へ進む
-            </Button>
+            </LoadingButton>
           </div>
         )}
       </div>
