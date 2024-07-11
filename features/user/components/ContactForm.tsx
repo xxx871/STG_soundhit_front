@@ -4,10 +4,10 @@ import React from 'react'
 import { useContactForm } from '../hooks/useContactForm';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
 const ContactForm = () => {
-  const { form, onSubmit } = useContactForm();
+  const { form, onSubmit, isLoading } = useContactForm();
   const {
     register,
     handleSubmit,
@@ -39,7 +39,14 @@ const ContactForm = () => {
         {errors.message && <p>※{errors.message.message}</p>}
       </div>
       <div className="mt-4">
-        <Button type="submit">メール送信</Button>
+        <LoadingButton
+          type="submit"
+          variant="outline"
+          className="w-32 h-12 text-lg text-white"
+          isLoading={isLoading}
+        >
+          送信
+        </LoadingButton>
       </div>
       </form>
     </div>
