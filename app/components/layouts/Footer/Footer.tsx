@@ -9,7 +9,7 @@ const Footer = () => {
           <Link href="/terms" className="">
             利用規約
           </Link>
-          <Link href="/" className="">
+          <Link href="/privacy" className="">
             プライバシーポリシー
           </Link>
           <Link href="/contact" className="">
