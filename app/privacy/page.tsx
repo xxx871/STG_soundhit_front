@@ -19,7 +19,7 @@ const Privacy = () => {
       </p>
       
       <h2 className="text-xl font-semibold mb-2">第2条（個人情報の収集方法）</h2>
-      <p className="mb-4 ml-4">本サイトは，ユーザーが利用登録をする際にニックネーム，メールアドレスなどの個人情報をお尋ねすることがあります。</p>
+      <p className="mb-4 ml-4">本サイトは，ユーザーが利用登録をする際にニックネーム，メールアドレス、性別などの個人情報をお尋ねすることがあります。</p>
 
       <h2 className="text-xl font-semibold mb-2">第3条（個人情報を収集・利用する目的）</h2>
       <p className="ml-4">本サイトが個人情報を収集・利用する目的は，以下のとおりです。</p>
