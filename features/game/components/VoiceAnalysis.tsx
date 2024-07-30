@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import * as Pitchfinder from 'pitchfinder';
 import { Note } from '@/types/interface';
 import { Button } from '@/components/ui/button';
@@ -8,9 +8,10 @@ interface VoiceAnalysisProps {
   notes: Note[];
   onResult: (isMatch: boolean) => void;
   onPitchDetected: (pitch: number, note: string) => void;
+  difficulty: string | null;
 }
 
-const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes, onResult, onPitchDetected }) => {
+const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes, onResult, onPitchDetected, difficulty }) => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [analyzing, setAnalyzing] = useState<boolean>(false);
   const [firstDetectedFrequency, setFirstDetectedFrequency] = useState<{ frequency: number, note: string } | null>(null);
@@ -21,13 +22,14 @@ const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes, onResul
   const bufferLength = 2048;
   const threshold = 0.01;
 
-  const findClosestNote = (frequency: number) => {
-    const closest = notes.reduce((acc, note) => {
+  const findClosestNote = useCallback((frequency: number): { note: string; frequency: number, diff: number; } | undefined => {
+    let filteredNotes = difficulty === '1' ? notes.filter(note => !note.en_note_name.includes('#')) : notes;
+
+    return filteredNotes.reduce((acc, note) => {
       const diff = Math.abs(frequency - note.frequency);
       return diff < acc.diff ? { note: note.en_note_name, frequency: note.frequency, diff } : acc;
     }, { note: '', frequency: 0, diff: Infinity });
-    return closest.note;
-  };
+  }, [notes, difficulty]);
 
   const startRecording = async () => {
     setIsRecording(true);
@@ -45,27 +47,29 @@ const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes, onResul
     scriptProcessorRef.current.connect(audioContextRef.current.destination);
 
     scriptProcessorRef.current.onaudioprocess = (event) => {
-      if (!analyzing) {
-        const inputBuffer = event.inputBuffer.getChannelData(0);
-        const maxAmplitude = Math.max(...Array.from(inputBuffer).map(sample => Math.abs(sample)));
+      if (analyzing) return;
 
-        if (maxAmplitude > threshold) {
-          const detectPitch = Pitchfinder.AMDF({ sampleRate: audioContextRef.current!.sampleRate});
-          const pitch = detectPitch(inputBuffer);
+      const inputBuffer = event.inputBuffer.getChannelData(0);
+      const maxAmplitude = Math.max(...Array.from(inputBuffer).map(sample => Math.abs(sample)));
 
-          if (pitch !== null) {
-            if (pitchesRef.current.length === 0) {
-              const closestNote = findClosestNote(pitch);
-              setFirstDetectedFrequency({ frequency: pitch, note: closestNote });
-              onPitchDetected(pitch, closestNote);
-              const isMatch = closestNote === targetNote;
-              onResult(isMatch);
-            }
-            pitchesRef.current.push(pitch);
+      if (maxAmplitude <= threshold) return;
+
+      const detectPitch = Pitchfinder.AMDF({ sampleRate: audioContextRef.current!.sampleRate});
+      const pitch = detectPitch(inputBuffer);
+      
+      if (pitch === null) return;
+
+      if (pitchesRef.current.length === 0) {
+        const closestNoteObj = findClosestNote(pitch);
+          if (closestNoteObj) {
+            setFirstDetectedFrequency({ frequency: pitch, note: closestNoteObj.note });
+            onPitchDetected(pitch, closestNoteObj.note);
+            const isMatch = closestNoteObj.note === targetNote;
+            onResult(isMatch);  
           }
         }
-      }
-    };
+        pitchesRef.current.push(pitch);
+      };
 
     setTimeout(() => {
       setIsRecording(false);
