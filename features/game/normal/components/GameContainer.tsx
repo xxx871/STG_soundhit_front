@@ -7,7 +7,6 @@ import MediumGame from './MediumGame';
 import HardGame from './HardGame';
 import { GameUser, Note } from '@/types/interface';
 import VoiceAnalysis from '../../components/VoiceAnalysis';
-import { Button } from '@/components/ui/button';
 import useMatchCount from '../../hooks/useMatchCount';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
@@ -61,7 +60,7 @@ const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
       case 1:
         return <EasyGame userInfo={userInfo} onPlayNote={handlePlayNote}/>
       case 2:
-        return <MediumGame />
+        return <MediumGame userInfo={userInfo} onPlayNote={handlePlayNote}/>
       case 3:
         return <HardGame />
       default:
@@ -73,13 +72,13 @@ const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
     <div className="text-white">
       <div>
         {renderGameComponent()}
-        <h2 className="text-white text-center mt-10">音が流れた後、ボタンを押して音声を入力</h2>
         {targetNote && (
           <VoiceAnalysis
             targetNote={targetNote}
             notes={notes}
             onResult={handleAnalysisResult}
             onPitchDetected={handlePitchDetected}
+            difficulty={difficulty}
           />
         )}
         {isMatch !== null && (
