@@ -12,7 +12,7 @@ const EasyGame: React.FC<EasyGameProps> = ({ userInfo, onPlayNote}) => {
   const { noteInfo, playNote } = useGameLogic(userInfo, true);
   return (
     <div>
-      <GameBase noteInfo={noteInfo} playNote={() => playNote(onPlayNote)} />;
+      <GameBase noteInfo={noteInfo} playNote={() => playNote(onPlayNote)} />
     </div>
   )
 };
