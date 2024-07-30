@@ -62,7 +62,7 @@ const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
       case 2:
         return <MediumGame userInfo={userInfo} onPlayNote={handlePlayNote}/>
       case 3:
-        return <HardGame />
+        return <HardGame userInfo={userInfo} notes={notes} onResult={handleAnalysisResult} onPitchDetected={handlePitchDetected}/>
       default:
         return <p>Invalid difficulty level</p>
     }
