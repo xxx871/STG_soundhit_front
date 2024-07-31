@@ -4,9 +4,8 @@ import { Gender, Note, User } from '@/types/interface';
 import React from 'react'
 import { useEditForm } from '../hooks/useEditForm';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import ModalKeyboard from './ModalKeyboard';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
+import Keyboard from '@/features/keyboard/components/Keyboard';
 
 export interface EditProfileProps {
   userData: User;
@@ -102,10 +101,12 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
             {errors.user_low_note && <span>{errors.user_low_note.message}</span>}
           </div>
         </div>
-        <ModalKeyboard notes={notes} />
         <div className="mt-4">
+          <Keyboard notes={notes} />
+        </div>
+        <div className="mt-10 flex flex-col items-center">
           {errorMessage && (
-            <div className="mb-4 text-white">{errorMessage}</div>
+            <div className="mb-4 text-white text-center">{errorMessage}</div>
           )}
           <LoadingButton
             type="submit"
