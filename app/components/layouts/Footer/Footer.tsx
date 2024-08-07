@@ -3,16 +3,16 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className="bg-white fixed bottom-0 w-full text-white border-gray-200 border-t">
-      <div className="items-center bg-blue-900 text-center">
-        <nav className="space-x-40 text-lg">
-          <Link href="/terms" className="">
+    <div className="bg-inherit fixed bottom-0 w-full text-white border-gray-200 border-t">
+      <div className="flex flex-col items-center py-2 pt-0">
+        <nav className="flex justify-center w-full text-lg max-w-2xl mx-auto">
+          <Link href="/terms" className="flex-1 text-center">
             利用規約
           </Link>
-          <Link href="/privacy" className="">
+          <Link href="/privacy" className="flex-1 text-center">
             プライバシーポリシー
           </Link>
-          <Link href="/contact" className="">
+          <Link href="/contact" className="flex-1 text-center">
             お問い合わせ
           </Link>
         </nav>

@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${palettemosaic.variable}`}>
       <body>
-        <Header />
-        {children}
-        <Footer />
+          <Header />
+          {children}
+          <Footer />
       </body>
     </html>
   );

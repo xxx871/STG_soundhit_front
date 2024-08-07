@@ -4,7 +4,7 @@
 
   @layer base {
     :root {
-      --background: 233 100% 25%;
+      --background: 0 0% 100%;
       --foreground: 233 100% 25%;
 
       --card: 0 0% 100%;
@@ -70,7 +70,7 @@
     * {
       @apply border-border;
     }
-    body {
-      @apply bg-background text-foreground;
+    body, #__next {
+      @apply min-h-screen bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed;
     }
   }

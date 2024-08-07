@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import React from 'react';
 
 export interface NoteInfoProps {
@@ -16,20 +17,37 @@ interface GameBaseProps {
 
 const GameBase: React.FC<GameBaseProps> = ({ noteInfo, playNote, showPlayButton = true, children }) => {
   return (
-    <main className="text-white">
-      <div className="mt-16 w-72 mx-auto text-2xl text-slate-300 text-center">
-        {showPlayButton && (
-          <Button variant="outline" onClick={playNote}>音を再生</Button>
-        )}
+    <main className="flex flex-col items-center justify-center w-full">
+      <div className="w-full max-w-3xl flex flex-col items-center">
         {noteInfo && (
-        <div className="mt-4 text-center">
-          <p>現在の音: {noteInfo.en_note_name}</p>
-          <p>周波数: {noteInfo.frequency}</p>
-          <p>日本語の音名: {noteInfo.ja_note_name}</p>
+          <div className="flex justify-around items-center w-full mb-4">
+            <div className="text-white">
+              <p className="text-xl font-semibold">現在の音</p>
+              <p className="text-6xl font-bold">{noteInfo.ja_note_name}({noteInfo.en_note_name})</p>
+              <p className="text-xl ml-3">周波数 {noteInfo.frequency} Hz</p>
+            </div>
+            {showPlayButton && (
+              <div className="flex flex-col items-center">
+                <Button
+                  variant="outline"
+                  onClick={playNote}
+                  className="w-20 h-20 border-2 border-black rounded-full flex items-center justify-center transition-all hover:scale-105 mt-4"
+                >
+                  <Image
+                    src="/1111.png"
+                    alt="音を再生"
+                    width={40}
+                    height={40}
+                  />
+                </Button>
+                <p className="text-white text-center">クリックして音を確認！</p>
+              </div>
+            )}
+          </div>
+        )}
+        <div className="w-full flex justify-center">
+          {children}
         </div>
-      )}
-      <h2 className="text-white text-center mt-10">ボタンを押して音声を入力</h2>
-      {children}
       </div>
     </main>
   )

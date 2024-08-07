@@ -137,7 +137,7 @@ const ModalTrigger = () => {
   return (
     <>
       <button
-        className="text-white"
+        className="transition-colors hover:text-gray-300"
         onClick={handleOpenModal}
       >
         遊び方</button>

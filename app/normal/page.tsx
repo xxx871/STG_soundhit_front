@@ -8,10 +8,10 @@ const Normal = async () => {
   const notes = await getNotes();
 
   return (
-    <div>
+    <div className="flex justify-center items-center mt-4">
       <GameContainer userInfo={userInfo} notes={notes}/>
     </div>
   )
-}
+};
 
-export default Normal
+export default Normal;

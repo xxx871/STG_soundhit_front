@@ -23,18 +23,19 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
 
 
   return (
-    <div>
+    <div className="text-white">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="text-center mb-5 text-3xl font-medium text-white">プロフィール編集</h2>
-        <div className="text-white">
-          <label htmlFor="name" className="mb-1 block text-2xl ">ユーザー名</label>
+        <h2 className="text-center mb-5 text-3xl font-medium">プロフィール編集</h2>
+        <div className="text-black">
+          <label htmlFor="name" className="mb-1 block text-2xl text-white">ユーザー名</label>
           <Input
             type="text"
             id="name"
             placeholder="xxx"
+            className="w-full h-12 text-lg px-4"
             {...register('name')}
           />
-          <div className="text-white">
+          <div className="text-black">
             {errors.name && <p>※{errors.name.message}</p>}
           </div>
         </div>
@@ -44,7 +45,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
             id="gender"
             {...register('gender')}
             defaultValue={userData.gender || ''}
-            className="border border-gray-300 text-gray-900 text-sx rounded-sm focus:border-blue-500 w-full p-2"
+            className="w-full h-12 text-lg px-4 border border-gray-300 text-gray-900 rounded-sm focus:border-blue-500"
           >
             <option value="">未選択</option>
             {genders.map(gender => (
@@ -65,7 +66,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
             id="user_high_note"
             {...register('user_high_note')}
             defaultValue={userData.user_high_note?.ja_note_name || ''}
-            className="border border-gray-300 text-gray-900 text-sx rounded-sm focus:border-blue-500 w-full p-2"
+            className="w-full h-12 text-lg px-4 border border-gray-300 text-gray-900 rounded-sm focus:border-blue-500"
           >
             <option value="">未選択</option>
             {notes.map(note => (
@@ -86,7 +87,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
             id="user_low_note"
             {...register('user_low_note')}
             defaultValue={userData.user_low_note?.ja_note_name || ''}
-            className="border border-gray-300 text-gray-900 text-sx rounded-sm focus:border-blue-500 w-full p-2"
+            className="w-full h-12 text-lg px-4 border border-gray-300 text-gray-900 rounded-sm focus:border-blue-500"
           >
             <option value="">未選択</option>
             {notes.map(note => (
@@ -101,7 +102,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
             {errors.user_low_note && <span>{errors.user_low_note.message}</span>}
           </div>
         </div>
-        <div className="mt-4">
+        <div className="mt-6 justify-center flex">
           <Keyboard notes={notes} />
         </div>
         <div className="mt-10 flex flex-col items-center">
@@ -111,7 +112,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
           <LoadingButton
             type="submit"
             variant="outline"
-            className="w-32 h-12 text-lg text-white"
+            className="text-black w-40 h-16 text-2xl rounded-full flex items-center justify-center transition-all hover:scale-105"
             isLoading={isLoading}
           >
             保存

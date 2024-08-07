@@ -47,27 +47,16 @@ const ResultContent: React.FC<resultContentProps> = ({ userInfo, modes, difficul
   const shareUrl = `${window.location.protocol}//${window.location.host}`;
 
   return (
-    <main className="text-white">
-      <h1 className="text-center mb-5 text-3xl font-medium mt-4">結果画面</h1>
-      <div className="w-72 mx-auto text-2xl text-slate-300 text-center mt-16">
-        <div>
-          <p>モード: {modeName}</p>
-          <p>難易度: {difficultyName}</p>
+    <main>
+      <h1 className="text-white text-center mt-16 text-4xl font-medium">結果画面</h1>
+      <div>
+        <div className="text-white text-3xl mt-8 text-center">
+          <p className="mb-2">モード: {modeName}</p>
+          <p className="mb-2">難易度: {difficultyName}</p>
           <p>連続で一致した回数: {matchCount}</p>
         </div>
-        <div className="mt-16">
-          <Button onClick={handleBackToHome} className="w-32 h-12 bg-blue-500 text-white">
-            トップページへ戻る
-          </Button>
-          <LoadingButton
-            onClick={handlePlayAgain}
-            className="bg-green-500 text-white w-32 h-12"
-            isLoading={isLoading}
-          >
-            もう一度遊ぶ
-          </LoadingButton>
-        </div>
-        <div className="flex items-center justify-center mt-4">
+
+        <div className="text-white flex items-center justify-center mt-6 font-bold">
         <TwitterShareButton
             url={shareUrl}
             title={tweetText}
@@ -85,6 +74,25 @@ const ResultContent: React.FC<resultContentProps> = ({ userInfo, modes, difficul
             <span className="ml-2">で共有</span>
           </LineShareButton>
         </div>
+
+        <div className="flex items-center justify-center mt-10 gap-4">
+          <Button
+            variant="outline"
+            onClick={handleBackToHome}
+            className="w-40 h-12 bg-blue-500 text-white text-lg hover:bg-blue-600 transition-colors duration-200"
+          >
+            トップページへ戻る
+          </Button>
+          <LoadingButton
+            variant="outline"
+            onClick={handlePlayAgain}
+            className="w-40 h-12 bg-green-400 text-white text-lg hover:bg-green-600 transition-colors duration-200"
+            isLoading={isLoading}
+          >
+            もう一度遊ぶ
+          </LoadingButton>
+        </div>
+
       </div>
     </main>
   )

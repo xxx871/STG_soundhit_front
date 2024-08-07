@@ -23,26 +23,28 @@ const PasswordChangeForm = () => {
             type="password"
             id="password"
             placeholder="password"
+            className="w-full h-12 text-lg px-4"
             {...register('password')}
           />
           {errors.password &&<p>※{errors.password.message}</p>}
         </div>
-        <div className="text-white">
+        <div className="text-white mt-4">
           <label htmlFor="password_confirmation" className="mb-1 block text-2xl">パスワード確認</label>
           <Input
             type="password"
             id="password_confirmation"
             placeholder="password"
+            className="w-full h-12 text-lg px-4"
             {...register('password_confirmation')}
           />
           {errors.password_confirmation &&<p>※{errors.password_confirmation.message}</p>}
         </div>
         {serverError && <p className="text-white mt-4">{serverError}</p>}
-        <div className="mt-4">
+        <div className="mt-6 mb-2 flex justify-center">
           <LoadingButton
             type="submit"
             variant="outline"
-            className="w-32 h-12 text-lg text-white"
+            className="w-20 h-10 text-lg flex items-center justify-center transition-all hover:scale-105"
             isLoading={isLoading}
           >
             送信

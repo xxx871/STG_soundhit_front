@@ -11,7 +11,7 @@ interface EasyGameProps {
 const EasyGame: React.FC<EasyGameProps> = ({ userInfo, onPlayNote}) => {
   const { noteInfo, playNote } = useGameLogic(userInfo, true);
   return (
-    <div>
+    <div className="w-full">
       <GameBase noteInfo={noteInfo} playNote={() => playNote(onPlayNote)} />
     </div>
   )

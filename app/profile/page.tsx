@@ -20,8 +20,11 @@ const Profile = async () => {
         lowNote={lowNote}
         scores={scores}
       />
-      <div className="flex items-center text-white mt-4">
-        <Link href="/profile/edit" className="bg-black px-4 py-2 rounded">
+      <div className="flex justify-center mt-6">
+        <Link
+          href="/profile/edit"
+          className="w-40 h-12 bg-black text-white text-xl rounded-full flex items-center justify-center transition-all hover:scale-105 font-bold"
+        >
           編集
         </Link>
       </div>

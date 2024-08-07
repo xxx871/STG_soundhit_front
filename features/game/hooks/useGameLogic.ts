@@ -56,6 +56,7 @@ const getNotes = async (userInfo: GameUser, searchParams: URLSearchParams): Prom
     if (user_high_note && user_low_note) {
       return await getUserNotesRange(user_high_note.en_note_name, user_low_note.en_note_name);
     } else if (gender_id !== undefined) {
+      const gender_id = parseInt(searchParams.get('genderId') || '', 10);
       return await getGenderNotesRange(gender_id);
     }
   }

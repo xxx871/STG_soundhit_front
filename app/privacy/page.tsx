@@ -97,7 +97,7 @@ const Privacy = () => {
 
       <h2 className="text-xl font-semibold mb-2">第10条（お問い合わせ窓口）</h2>
       <p className="mb-2 ml-4">本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。</p>
-      <Link href="/contact" className="bg-blue-500 py-2 px-4 rounded inline-block mt-2 ml-6">お問い合わせフォーム</Link>
+      <Link href="/contact" className="bg-black py-2 px-4 rounded inline-block mt-1 ml-6">お問い合わせフォーム</Link>
       <p className="text-right">以上</p>
 
       <div className="flex justify-center items-center my-6 mb-12">

@@ -12,12 +12,12 @@ const Login = () => {
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xm text-white">
-          <span className="px-2 bg-background">
+          <span className="px-2 my-6 backdrop-blur-sm">
             または
           </span>
         </div>
       </div>
-      <div className="flex flex-col gap-3 text-white">
+      <div className="flex flex-col gap-3 text-black">
         <ExternalAuthButton provider="github" label="Github"/>
         <ExternalAuthButton provider="google" label="Google" />
       </div>

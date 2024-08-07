@@ -9,12 +9,12 @@ interface DifficultSelectProps {
 const DifficultySelect = ({ difficulties, onSelect }: DifficultSelectProps) => {
   return (
     <Select onValueChange={onSelect}>
-      <SelectTrigger className="w-80 h-12 text-lg">
+      <SelectTrigger className="w-full h-16 text-xl text-center mt-2">
         <SelectValue placeholder="難易度を選択してください" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="w-72">
         {difficulties.map((difficulty) => (
-          <SelectItem key={difficulty.id} value={difficulty.id.toString()}>
+          <SelectItem key={difficulty.id} value={difficulty.id.toString()} className="text-xl py-3">
             {difficulty.name}
           </SelectItem>
         ))}

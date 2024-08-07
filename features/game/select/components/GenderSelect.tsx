@@ -9,12 +9,12 @@ interface GenderSelectProps {
 const GenderSelect = ({ genders, onSelect }: GenderSelectProps) => {
   return (
     <Select onValueChange={onSelect}>
-      <SelectTrigger className="w-80 h-12 text-lg">
-        <SelectValue placeholder="難易度を選択してください" />
+      <SelectTrigger className="w-full h-16 text-xl text-center mt-2">
+        <SelectValue placeholder="性別を選択してください" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="w-72">
         {genders.map((gender) => (
-          <SelectItem key={gender.id} value={gender.id.toString()}>
+          <SelectItem key={gender.id} value={gender.id.toString()} className="text-xl py-3">
             {gender.name}
           </SelectItem>
         ))}
