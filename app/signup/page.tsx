@@ -4,7 +4,7 @@ import React from 'react'
 
 const SignUp = () => {
   return (
-    <div className="max-w-sm mx-auto mt-10">
+    <div className="max-w-sm mx-auto">
       <SignupForm />
       <div className="text-center mt-4">
         <Link href="/login" className="text-white hover:underline text-xl">

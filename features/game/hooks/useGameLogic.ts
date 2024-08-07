@@ -54,15 +54,21 @@ const getNotes = async (userInfo: GameUser, searchParams: URLSearchParams): Prom
   if (userInfo) {
     const { user_high_note, user_low_note, gender_id } = userInfo;
     if (user_high_note && user_low_note) {
-      return await getUserNotesRange(user_high_note.en_note_name, user_low_note.en_note_name);
-    } else if (gender_id !== undefined) {
-      const gender_id = parseInt(searchParams.get('genderId') || '', 10);
-      return await getGenderNotesRange(gender_id);
+      const notes = await getUserNotesRange(user_high_note.en_note_name, user_low_note.en_note_name);
+      return notes;
+    } else if (!user_high_note && !user_low_note || gender_id !== null) {
+      const notes = await getGenderNotesRange(gender_id);
+      return notes;
+    } else if (!user_high_note && !user_low_note && !gender_id) {
+        const genderId = parseInt(searchParams.get('genderId') || '', 10);
+        const notes = await getGenderNotesRange(genderId);
+        return notes;
     }
   }
   const genderId = parseInt(searchParams.get('genderId') || '', 10);
   if (!isNaN(genderId)) {
-    return await getGenderNotesRange(genderId);
+    const notes = await getGenderNotesRange(genderId);
+    return notes;
   }
   throw new Error("Unable to get notes");
 };

@@ -10,10 +10,10 @@ const Header = async () => {
   const isLoggedIn = userSession ? userSession.is_login : false;
 
   return (
-    <div className="divide-y border-gray-200 dark:border-gray-800 border-b bg-inherit h-16 flex items-center">
+    <div className="divide-y border-gray-200 dark:border-gray-800 border-b bg-inherit h-12 flex items-center">
       <div className="px-4 md:py-2 lg:px-6 w-full">
         <div className="flex items-center justify-between space-y-2 md:space-y-0 md:space-x-6 text-white">
-          <Link href="/" className="text-3xl font-bold font-palettemosaic flex items-center">
+          <Link href="/" className="text-2xl font-bold font-palettemosaic flex items-center">
             <Image
               src="/note_rotated_new.png"
               alt="Header Icon"
@@ -22,7 +22,7 @@ const Header = async () => {
             />
             おんぴしゃ
           </Link>
-          <nav className="flex justify-end items-center space-x-6 text-3xl font-medium text-white">
+          <nav className="flex justify-end items-center space-x-6 text-2xl font-medium text-white">
             <ModalTutorial />
             <Link href="/rankings" className="transition-colors hover:text-gray-300">
               ランキング
@@ -37,7 +37,7 @@ const Header = async () => {
                 </LogoutButton>
               </>
             ) : (
-              <Link href="/login" className="bg-black py-2 px-3 rounded-md font-medium text-2xl">
+              <Link href="/login" className="bg-black py-1 px-3 rounded-md font-medium text-xl">
                 ログイン
               </Link>
             )}

@@ -18,22 +18,24 @@ const ContactForm = () => {
   return (
     <div className="max-w-md mx-auto">
       <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="text-white text-center mt-16 text-4xl font-medium">お問い合わせ</h2>
+      <h2 className="text-white text-center mt-8 text-3xl font-medium">お問い合わせ</h2>
       <div className="text-white mt-4">
-        <label htmlFor="email" className="mb-1 block text-2xl">メールアドレス</label>
+        <label htmlFor="email" className="mb-1 block text-xl">メールアドレス</label>
         <Input
           type="email"
           id="email"
           placeholder="aaa@example.com"
+          className="text-black"
           {...register('email')}
         />
         {errors.email && <p>※{errors.email.message}</p>}
       </div>
       <div className="text-white mt-4">
-        <label htmlFor="message" className="mb-1 block text-2xl">メッセージ</label>
+        <label htmlFor="message" className="mb-1 block text-xl">メッセージ</label>
         <Textarea
           id="message"
           placeholder="text"
+          className="text-black"
           {...register('message')}
         />
         {errors.message && <p>※{errors.message.message}</p>}

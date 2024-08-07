@@ -41,7 +41,7 @@ export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
   };
 
   useEffect(() => {
-    setShowGenderSelect(!userInfo || !userInfo.gender);
+    setShowGenderSelect(!userInfo || !userInfo.user_low_note && !userInfo.user_high_note );
   }, [userInfo]);
 
   const handleStartClick = () => {
@@ -58,43 +58,41 @@ export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
     router.push(path);
   };
 
-  // const selectedMode = modes.find(mode => mode.id.toString() === modeId);
-
   return (
     <div className="flex flex-col items-center justify-center text-black">
       <div className="w-full max-w-md px-4"></div>
-        <h1 className="text-white text-center mt-16 text-4xl font-medium">
+        <h2 className="text-white text-center mt-8 text-3xl font-medium">
           通常モード
-        </h1>
-        <div className="mt-16 w-96">  
-          <label className="text-white text-2xl block mb-2">難易度</label>
+        </h2>
+        <div className="mt-8 w-60 mx-auto">  
+          <label className="text-white text-xl">難易度</label>
           <DifficultySelect difficulties={difficultiesWithDescriptions} onSelect={handleDifficultySelect} />
         </div>
 
         {selectedDifficult && (
-            <div className="mt-4 text-center max-w-md text-white">
-              <p className="text-xl whitespace-pre-line">{selectedDifficult.description}</p>
+            <div className="text-center max-w-md text-white mt-1">
+              <p className="text-base whitespace-pre-line">{selectedDifficult.description}</p>
             </div>
           )}
 
         {showGenderSelect && (
-          <div className="mt-4 w-96">
-            <label className="text-white text-2xl block mb-2">性別</label>
+          <div className="mt-4 w-60 mx-auto">
+            <label className="text-white text-xl">性別</label>
             <GenderSelect genders={gendersWithDescriptions} onSelect={handleGenderSelect} />
             {selectedGender && (
-              <div className="mt-4 text-center max-w-md text-white">
-                <p className="text-xl whitespace-nowrap">
+              <div className="text-center text-white mt-1 absolute left-0 right-0">
+                <p className="text-base whitespace-nowrap overflow-hidden text-ellipsis">
                   {selectedGender.description}
                 </p>
               </div>
             )}
           </div>
         )}
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center mt-16">
           <LoadingButton
             variant="outline"
             onClick={handleStartClick}
-            className="w-40 h-16 text-3xl rounded-full flex items-center justify-center transition-all hover:scale-105"
+            className="w-32 h-12 text-xl rounded-full flex items-center justify-center transition-all hover:scale-105"
             isLoading={isLoading}
           >
             START
@@ -104,4 +102,4 @@ export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
   )
 }
 
-export default DifficultGenderSelect
+export default DifficultGenderSelect;

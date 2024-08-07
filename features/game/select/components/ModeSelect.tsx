@@ -48,17 +48,17 @@ export const ModeSelect = ({ modes }: ModeSelectProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center text-black">
-      <div className="w-96">
-        <label className="text-2xl text-white">モード</label>
+    <div className="flex flex-col items-center text-black w-full">
+      <div className="w-60 mx-auto">
+        <label className="text-xl text-white">モード</label>
       <Select onValueChange={handleModeSelect}>
-        <SelectTrigger className="w-96 h-16 text-xl text-center mt-2">
+        <SelectTrigger className="w-full text-lg text-center justify-center">
           <SelectValue placeholder="モードを選択してください" />
         </SelectTrigger>
-        <SelectContent className="w-72">
+        <SelectContent className="w-60">
           <SelectGroup>
             {modes.map((mode) => (
-              <SelectItem key={mode.id} value={mode.id.toString()} className="text-xl py-3">
+              <SelectItem key={mode.id} value={mode.id.toString()} className="">
                 {mode.name}
               </SelectItem>
             ))}
@@ -68,15 +68,15 @@ export const ModeSelect = ({ modes }: ModeSelectProps) => {
       </div>
 
       {selectedMode && (
-        <div className="mt-4 text-center max-w-md text-white">
-          <p className="text-xl whitespace-pre-line">{selectedMode.description}</p>
+        <div className="text-center max-w-md text-white mt-1">
+          <p className="text-base whitespace-pre-line">{selectedMode.description}</p>
         </div>
       )}
 
       <div className="mt-6">
       <LoadingButton
           variant="outline"
-          className="w-40 h-16 text-3xl rounded-full flex items-center justify-center transition-all hover:scale-105"
+          className="w-32 h-12 text-xl rounded-full flex items-center justify-center transition-all hover:scale-105"
           isLoading={isLoading}
           onClick={handleStartClick}
         >
