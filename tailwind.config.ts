@@ -23,6 +23,9 @@ const config = {
         recursive: "var(--font-recursive)",
         palettemosaic: "var(--font-palettemosaic)"
       },
+      backgroundImage: {
+        'hero-pattern': "url('/blue_00015.jpg')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

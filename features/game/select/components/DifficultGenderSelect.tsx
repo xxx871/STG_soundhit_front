@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import DifficultySelect from './DifficultySelect';
 import GenderSelect from './GenderSelect';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
+import { combineDifficultWithDescription, combineGenderWithDescription, DifficultWithDescription, GenderWithDescription } from '../utils/combineWithDescription';
 
 interface DifficultGenderSelectProps {
   genders: { id: number; name: string }[];
@@ -17,15 +18,27 @@ export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
   genders,
   difficulties,
   userInfo,
-  modes,
+  // modes,
 }) => {
-  const [selectedDifficult, setSelectedDifficult] = useState<string>('');
-  const [selectedGender, setSelectedGender] = useState<string>('');
+  const difficultiesWithDescriptions = difficulties.map(combineDifficultWithDescription);
+  const gendersWithDescriptions = genders.map(combineGenderWithDescription);
+  const [selectedDifficult, setSelectedDifficult] = useState<DifficultWithDescription | null>(null);
+  const [selectedGender, setSelectedGender] = useState<GenderWithDescription | null>(null);
   const [showGenderSelect, setShowGenderSelect] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const searchParams = useSearchParams();
   const modeId = searchParams.get('modeId');
+
+  const handleDifficultySelect = (difficultyId: string) => {
+    const difficulty = difficultiesWithDescriptions.find(d => d.id.toString() === difficultyId);
+    setSelectedDifficult(difficulty || null);
+  };
+
+  const handleGenderSelect = (genderId: string) => {
+    const gender = gendersWithDescriptions.find(g => g.id.toString() === genderId);
+    setSelectedGender(gender || null);
+  };
 
   useEffect(() => {
     setShowGenderSelect(!userInfo || !userInfo.gender);
@@ -41,38 +54,53 @@ export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
       return;
     }
     setIsLoading(true);
-    const path = `/normal?modeId=${modeId}&difficultyId=${selectedDifficult}&genderId=${selectedGender}`;
+    const path = `/normal?modeId=${modeId}&difficultyId=${selectedDifficult.id}&genderId=${showGenderSelect ? selectedGender?.id : ''}`;
     router.push(path);
   };
 
-  const selectedMode = modes.find(mode => mode.id.toString() === modeId);
+  // const selectedMode = modes.find(mode => mode.id.toString() === modeId);
 
   return (
-    <div className="mt-6 flex flex-col items-center justify-center">
-      <h1 className="text-center mb-5 mt-16 text-3xl font-medium">
-        {selectedMode ? `${selectedMode.name}モード` : 'モードが見つかりません'}
-      </h1>
-      <div className="text-2xl mt-16 w-72 mx-auto">
-        <div>
-          <label>難易度</label>
+    <div className="flex flex-col items-center justify-center text-black">
+      <div className="w-full max-w-md px-4"></div>
+        <h1 className="text-white text-center mt-16 text-4xl font-medium">
+          通常モード
+        </h1>
+        <div className="mt-16 w-96">  
+          <label className="text-white text-2xl block mb-2">難易度</label>
+          <DifficultySelect difficulties={difficultiesWithDescriptions} onSelect={handleDifficultySelect} />
         </div>
-        <DifficultySelect difficulties={difficulties} onSelect={setSelectedDifficult} />
+
+        {selectedDifficult && (
+            <div className="mt-4 text-center max-w-md text-white">
+              <p className="text-xl whitespace-pre-line">{selectedDifficult.description}</p>
+            </div>
+          )}
+
+        {showGenderSelect && (
+          <div className="mt-4 w-96">
+            <label className="text-white text-2xl block mb-2">性別</label>
+            <GenderSelect genders={gendersWithDescriptions} onSelect={handleGenderSelect} />
+            {selectedGender && (
+              <div className="mt-4 text-center max-w-md text-white">
+                <p className="text-xl whitespace-nowrap">
+                  {selectedGender.description}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+          <div className="flex justify-center mt-6">
+          <LoadingButton
+            variant="outline"
+            onClick={handleStartClick}
+            className="w-40 h-16 text-3xl rounded-full flex items-center justify-center transition-all hover:scale-105"
+            isLoading={isLoading}
+          >
+            START
+          </LoadingButton>
+        </div>
       </div>
-      {showGenderSelect && (
-        <div className="text-2xl mt-4 w-72 mx-auto">
-          <label>性別</label>
-          <GenderSelect genders={genders} onSelect={setSelectedGender} />
-        </div>
-      )}
-      <LoadingButton
-        variant="outline"
-        onClick={handleStartClick}
-        className="w-32 h-12 text-lg mt-16"
-        isLoading={isLoading}
-      >
-        START
-      </LoadingButton>
-    </div>
   )
 }
 

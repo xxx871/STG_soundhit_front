@@ -5,18 +5,20 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue, SelectGr
 import { Mode } from '@/types/interface';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import { combineModeWithDescription, ModeWithDescription } from '../utils/combineWithDescription';
 
 export interface ModeSelectProps {
   modes: Mode[];
 }
 
 export const ModeSelect = ({ modes }: ModeSelectProps) => {
-  const [selectedMode, setSelectedMode] = useState<Mode | null>(null);
+  const modesWithDescriptions = modes.map(combineModeWithDescription);
+  const [selectedMode, setSelectedMode] = useState<ModeWithDescription | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleModeSelect = (modeId: string) => {
-    const mode = modes.find(mode => mode.id.toString() === modeId);
+    const mode = modesWithDescriptions.find(mode => mode.id.toString() === modeId);
     setSelectedMode(mode || null);
   };
 
@@ -46,25 +48,35 @@ export const ModeSelect = ({ modes }: ModeSelectProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center space-y-8">
+    <div className="flex flex-col items-center text-black">
+      <div className="w-96">
+        <label className="text-2xl text-white">モード</label>
       <Select onValueChange={handleModeSelect}>
-        <SelectTrigger className="w-80 h-12 text-lg">
+        <SelectTrigger className="w-96 h-16 text-xl text-center mt-2">
           <SelectValue placeholder="モードを選択してください" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="w-72">
           <SelectGroup>
             {modes.map((mode) => (
-              <SelectItem key={mode.id} value={mode.id.toString()}>
+              <SelectItem key={mode.id} value={mode.id.toString()} className="text-xl py-3">
                 {mode.name}
               </SelectItem>
             ))}
           </SelectGroup>
         </SelectContent>
       </Select>
-      <div className="mt-16 w-16 mx-auto font-palettemosaic mb-24">
+      </div>
+
+      {selectedMode && (
+        <div className="mt-4 text-center max-w-md text-white">
+          <p className="text-xl whitespace-pre-line">{selectedMode.description}</p>
+        </div>
+      )}
+
+      <div className="mt-6">
       <LoadingButton
           variant="outline"
-          className="w-32 h-12 text-lg"
+          className="w-40 h-16 text-3xl rounded-full flex items-center justify-center transition-all hover:scale-105"
           isLoading={isLoading}
           onClick={handleStartClick}
         >
@@ -72,7 +84,7 @@ export const ModeSelect = ({ modes }: ModeSelectProps) => {
         </LoadingButton>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ModeSelect
+export default ModeSelect;

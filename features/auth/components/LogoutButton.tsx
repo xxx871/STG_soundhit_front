@@ -36,6 +36,7 @@ const LogoutButton = ({
       onClick={handleLogout}
       type={type}
       isLoading={isLoading}
+      className="bg-black py-2 px-3 rounded-md font-medium text-2xl"
     >
       {children}
     </LoadingButton>

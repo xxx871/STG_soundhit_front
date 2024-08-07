@@ -6,13 +6,16 @@ export default async function Home() {
   const modes: Mode[] = await getModes();
 
   return (
-    <main className="text-white">
-      <div>
-      <h1 className="text-9xl mt-16 text-center font-palettemosaic font-bold">
+    <main className="text-white flex flex-col items-center justify-center mt-28">
+      <div className="text-center">
+        <h1 className="text-9xl font-palettemosaic font-bold">
           おんぴしゃ
         </h1>
+        <p className="mt-6 text-2xl">
+          ～発声直後の声の高さをドンピシャで当てる音声測定サービス～
+        </p>
       </div>
-      <div className="mt-16 flex flex-col items-center justify-center">
+      <div className="mt-10">
       <ModeSelect modes={modes} />
       </div>
     </main>

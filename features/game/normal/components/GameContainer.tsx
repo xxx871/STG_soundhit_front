@@ -69,8 +69,8 @@ const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
   };
 
   return (
-    <div className="text-white">
-      <div>
+    <div className="flex flex-col items-center w-full"  >
+      <div className="w-full max-w-md">
         {renderGameComponent()}
         {targetNote && (
           <VoiceAnalysis
@@ -82,14 +82,15 @@ const GameContainer: React.FC<GameContainerProps> = ({ userInfo, notes }) => {
           />
         )}
         {isMatch !== null && (
-          <div className="w-72 mx-auto text-2xl text-slate-300 text-center">
-            <div>{isMatch ? '一致' : '不一致'}</div>
+          <div className="w-72 mx-auto text-2xl text-center mt-2">
+            <div className="text-white font-extrabold mb-1">{isMatch ? '一致' : '不一致'}</div>
             <LoadingButton
+              variant="outline"
               onClick={handleResultClick}
-              className="w-72 text-2xl text-center"
+              className="w-72 h-12 border-2 border-black text-xl font-bold rounded-ld items-center justify-center transition-all hover:scale-105"
               isLoading={isLoading}
             >
-              結果へ進む
+              結果画面へ
             </LoadingButton>
           </div>
         )}
