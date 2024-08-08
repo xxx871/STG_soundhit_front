@@ -32,18 +32,18 @@ import { Icon } from '@/features/auth/components/icon';
 
     return (
       <div className="text-white max-w-sm mx-auto">
-        <h1 className="text-6xl text-center mt-6">ランキング</h1>
-        <div className="mt-8 text-2xl flex justify-between">
+        <h2 className="text-white text-center mt-8 text-3xl font-medium">ランキング</h2>
+        <div className="mt-8 text-lg flex justify-between">
           <div>
             <label>モード</label>
             <Select onValueChange={(value) => setSelectedMode(Number(value))}>
-              <SelectTrigger className="text-xl text-black w-40">
+              <SelectTrigger className="text-lg text-black w-40">
                 <SelectValue placeholder="モード選択" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
                   {modes.map((mode) => (
-                    <SelectItem key={mode.id} value={mode.id.toString()} className="text-xl py-3">
+                    <SelectItem key={mode.id} value={mode.id.toString()}>
                       {mode.name}
                     </SelectItem>
                   ))}
@@ -54,13 +54,13 @@ import { Icon } from '@/features/auth/components/icon';
           <div>
             <label>難易度</label>
             <Select onValueChange={(value) => setSelectedDifficulty(Number(value))}>
-              <SelectTrigger className="text-xl text-black w-40">
+              <SelectTrigger className="text-lg text-black w-40">
                 <SelectValue placeholder="難易度選択" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
                   {difficulties.map((difficulty) => (
-                    <SelectItem key={difficulty.id} value={difficulty.id.toString()} className="text-xl py-3">
+                    <SelectItem key={difficulty.id} value={difficulty.id.toString()}>
                       {difficulty.name}
                     </SelectItem>
                   ))}
@@ -69,7 +69,7 @@ import { Icon } from '@/features/auth/components/icon';
             </Select>
           </div>
         </div>
-        <div className="mt-8 text-3xl">
+        <div className="mt-8 text-2xl">
           {isLoading ? (
             <Icon.spinner className="animate-spin" />
           ) : rankings.length > 0 ? (

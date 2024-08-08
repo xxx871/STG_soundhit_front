@@ -12,7 +12,7 @@ const Profile = async () => {
   const { name, user_high_note: highNote, user_low_note: lowNote, scores, gender } = userData;
 
   return (
-    <div className="max-w-sm mx-auto mt-10 grig gap-6">
+    <div className="max-w-sm mx-auto grig gap-6">
       <UserProfile
         name={name}
         gender={gender}

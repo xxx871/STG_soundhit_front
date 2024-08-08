@@ -16,25 +16,25 @@ const PasswordChangeForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="text-center mb-5 text-3xl font-medium text-white">パスワード新規登録</h2>
+        <h2 className="text-white text-center mt-8 text-3xl font-medium">パスワード新規登録</h2>
         <div className="text-white">
-          <label htmlFor="password" className="mb-1 block text-2xl">パスワード</label>
+          <label htmlFor="password" className="mb-1 block text-xl">パスワード</label>
           <Input
             type="password"
             id="password"
             placeholder="password"
-            className="w-full h-12 text-lg px-4"
+            className="text-black"
             {...register('password')}
           />
           {errors.password &&<p>※{errors.password.message}</p>}
         </div>
         <div className="text-white mt-4">
-          <label htmlFor="password_confirmation" className="mb-1 block text-2xl">パスワード確認</label>
+          <label htmlFor="password_confirmation" className="mb-1 block text-xl">パスワード確認</label>
           <Input
             type="password"
             id="password_confirmation"
             placeholder="password"
-            className="w-full h-12 text-lg px-4"
+            className="text-black"
             {...register('password_confirmation')}
           />
           {errors.password_confirmation &&<p>※{errors.password_confirmation.message}</p>}

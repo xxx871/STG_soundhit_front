@@ -12,34 +12,34 @@ interface UserProfileProps {
 const UserProfile: React.FC<UserProfileProps> = ({ name, gender, highNote, lowNote, scores }) => {
   return (
     <div>
-      <h1 className="text-center mb-5 text-3xl font-medium text-white">プロフィール</h1>
+      <h2 className="text-white text-center mt-8 text-3xl font-medium">プロフィール</h2>
 
-      <div className="bg-white shadow-md rounded p-4 mt-4">
+      <div className="bg-white shadow-md rounded p-2 mt-4">
         <div className="flex items-center">
-          <h2 className="text-2xl font-semibold">名前：{name}</h2>
+          <h2 className="text-xl font-semibold">名前：{name}</h2>
         </div>
       </div>
       
-      <div className="bg-white shadow-md rounded p-4 mt-4">
+      <div className="bg-white shadow-md rounded p-2 mt-4">
         <div className="flex items-center">
-          <h2 className="text-2xl font-semibold">性別：{gender}</h2>
+          <h2 className="text-xl font-semibold">性別：{gender}</h2>
         </div>
       </div>
       
-      <div className="bg-white shadow-md rounded p-4 mt-4">
+      <div className="bg-white shadow-md rounded p-2 mt-4">
         <div className="flex items-center">
-          <h2 className="text-2xl font-semibold">音域高：{highNote?.ja_note_name} ({highNote?.frequency} Hz)</h2>
+          <h2 className="text-xl font-semibold">音域高：{highNote?.ja_note_name} ({highNote?.frequency} Hz)</h2>
         </div>
       </div>
       
-      <div className="bg-white shadow-md rounded p-4 mt-4">
+      <div className="bg-white shadow-md rounded p-2 mt-4">
         <div className="flex items-center">
-          <h2 className="text-2xl font-semibold">音域低：{lowNote?.ja_note_name} ({lowNote?.frequency} Hz)</h2>
+          <h2 className="text-xl font-semibold">音域低：{lowNote?.ja_note_name} ({lowNote?.frequency} Hz)</h2>
         </div>
       </div>
       
-      <div className="bg-white shadow-md rounded p-4 mt-4">
-        <h2 className="text-2xl font-semibold mt-4">スコア：</h2>
+      <div className="bg-white shadow-md rounded p-2 mt-4">
+        <h2 className="text-xl font-semibold">スコア</h2>
         <ul>
           {scores.map((score: Score) => (
             <li key={score.id} className="mb-2">

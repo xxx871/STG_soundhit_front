@@ -11,7 +11,7 @@ const Keyboard: React.FC<{ notes: Note[] }> = ({ notes }) => {
     <div>
       <Button
         type="button"
-        className="w-40 h-12 text-xl rounded-full flex items-center justify-center transition-all hover:scale-105"
+        className="w-30 h-10 text-lg rounded-full flex items-center justify-center transition-all hover:scale-105"
         onClick={openModal}
       >
         キーボードを表示

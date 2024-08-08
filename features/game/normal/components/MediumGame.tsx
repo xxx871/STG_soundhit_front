@@ -13,7 +13,7 @@ const MediumGame: React.FC<MediumGameProps> = ({ userInfo, onPlayNote }) => {
 
   return (
     <div>
-      <GameBase noteInfo={noteInfo} playNote={() => playNote(onPlayNote)} />;
+      <GameBase noteInfo={noteInfo} playNote={() => playNote(onPlayNote)} />
     </div>
   )
 }
