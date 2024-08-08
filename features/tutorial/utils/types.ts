@@ -1,0 +1,1 @@
+export type Page = 'home' | 'mode1' | 'mode2' | 'mode3';
