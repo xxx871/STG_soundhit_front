@@ -1,7 +1,13 @@
+import { Mode } from '@/types/interface';
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-const NormalModeContent: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+interface NormalModeContentProps {
+  mode: Mode;
+  onBack: () => void;
+}
+
+const NormalModeContent: React.FC<NormalModeContentProps> = ({ mode, onBack }) => {
   const [page, setPage] = useState(1);
 
   const renderContent = () => {
@@ -9,7 +15,7 @@ const NormalModeContent: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       case 1:
         return (
           <div className="flex flex-col items-center">
-            <h2 className="text-2xl mb-2 text-center">通常モード(選択画面)</h2>
+            <h2 className="text-2xl mb-2 text-center">{mode.name}モード(選択画面)</h2>
             <div className="text-base font-normal mb-6 text-center">
               <p>選択した難易度・性別に応じて出題される音が変わります。</p>
               <div className="mt-1">
@@ -53,7 +59,7 @@ const NormalModeContent: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       case 2:
         return (
           <div className="flex flex-col items-center">
-            <h2 className="text-2xl mb-6 text-center">通常モード(ゲーム画面)</h2>
+            <h2 className="text-2xl mb-6 text-center">{mode.name}モード(ゲーム画面)</h2>
             <div className="text-base font-normal mb-2">
               <p>① 出題されている音階</p>
               <p>② クリックすると①の音を聞けます。</p>
@@ -88,7 +94,7 @@ const NormalModeContent: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       case 3:
         return (
           <div className="flex flex-col items-center">
-            <h2 className="text-2xl mb-6 text-center">通常モード(結果画面)</h2>
+            <h2 className="text-2xl mb-6 text-center">{mode.name}モード(結果画面)</h2>
             <div className="text-base font-normal mb-2">
               <p>現在のモード・難易度・連続で一致した回数を確認することができます。</p>
               <p>過去の結果はプロフィールページやランキングページで見れて、またXや</p>

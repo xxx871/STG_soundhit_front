@@ -5,8 +5,13 @@ import { useModalTutorial } from '../hooks/useModalTutorial';
 import Modal from './Modal';
 import HomeContent from './HomeContent';
 import { ModeContent } from './ModeContent';
+import { Mode } from '@/types/interface';
 
-const ModalTutorial = () => {
+interface ModalTutorialProps {
+  modes: Mode[];
+}
+
+const ModalTutorial: React.FC<ModalTutorialProps> = ({ modes }) => {
   const { isModalOpen, currentPage, openModal, closeModal, setPage } = useModalTutorial();
 
   return (
@@ -20,9 +25,9 @@ const ModalTutorial = () => {
       {isModalOpen && (
         <Modal onClose={closeModal}>
           {currentPage === 'home' ? (
-            <HomeContent onModeSelect={setPage} />
+            <HomeContent modes={modes} onModeSelect={setPage} />
           ) : (
-            <ModeContent mode={currentPage} onBack={() => setPage('home')} />
+            <ModeContent mode={currentPage} modes={modes} onBack={() => setPage('home')} />
           )}
         </Modal>
       )}

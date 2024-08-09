@@ -1,27 +1,28 @@
 import React from 'react'
 import { Page } from '../utils/types';
 import Image from 'next/image';
-
-const MODES = [
-  { id: 'mode1' as const, name: '通常モード', color: 'green' },
-  { id: 'mode2' as const, name: 'ハモりモード', color: 'blue' },
-  { id: 'mode3' as const, name: '練習モード', color: 'yellow' },
-];
+import { Mode } from '@/types/interface';
 
 interface HomeContentProps {
+  modes: Mode[];
   onModeSelect: (mode: Page) => void;
 }
 
-export const HomeContent: React.FC<HomeContentProps> = ({ onModeSelect }) => {
+export const HomeContent: React.FC<HomeContentProps> = ({ modes, onModeSelect }) => {
+  const getButtonColor = (index: number) => {
+    const colors = ['bg-green-500', 'bg-blue-500', 'bg-yellow-500'];
+    return colors [index % colors.length];
+  };
+
   return (
     <div className="flex flex-col items-center">
       <h2 className="text-2xl mb-4 text-center">遊び方</h2>
       <div className="flex justify-between w-full mb-4">
-        {MODES.map((mode) => (
+        {modes.map((mode, index) => (
           <button
             key={mode.id}
-            className={`bg-${mode.color}-500 px-4 py-2 rounded text-xl text-white w-[30%]`}
-            onClick={() => onModeSelect(mode.id)}
+            className={`${getButtonColor(index)} px-4 py-2 rounded text-xl text-white w-[30%]`}
+            onClick={() => onModeSelect(mode.id.toString() as Page)}
           >
             {mode.name}
           </button>
@@ -40,7 +41,6 @@ export const HomeContent: React.FC<HomeContentProps> = ({ onModeSelect }) => {
           <p>トップページのドロップダウンから遊びたいモードを選択してください。</p>
           <p>各モードに関する詳しい説明は上部のボタンから選択してご覧できます。</p>
         </div>
-
       </div>
     </div>
   )

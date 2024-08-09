@@ -4,10 +4,12 @@ import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image';
 import ModalTutorial from '@/features/tutorial/components/ModalTutorial';
+import { getModes } from '@/lib/api/getModes';
 
 const Header = async () => {
   const userSession = await getUserSession();
   const isLoggedIn = userSession ? userSession.is_login : false;
+  const modes = await getModes();
 
   return (
     <header className="divide-y border-gray-200 dark:border-gray-800 border-b bg-inherit h-12 flex items-center">
@@ -23,7 +25,7 @@ const Header = async () => {
             おんぴしゃ
           </Link>
           <nav className="flex justify-end items-center text-2xl font-medium text-white">
-            <ModalTutorial />
+            <ModalTutorial modes={modes}/>
             <Link href="/rankings" className="transition-colors hover:text-gray-300 mx-6">
               ランキング
             </Link>

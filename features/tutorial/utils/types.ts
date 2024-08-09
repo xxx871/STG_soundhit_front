@@ -1,1 +1,1 @@
-export type Page = 'home' | 'mode1' | 'mode2' | 'mode3';
+export type Page = 'home' | string;
