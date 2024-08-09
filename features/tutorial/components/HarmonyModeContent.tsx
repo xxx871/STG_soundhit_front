@@ -1,6 +1,12 @@
+import { Mode } from '@/types/interface';
 import React, { useState } from 'react';
 
-const HarmonyModeContent: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+interface HarmonyModeContentProps {
+  mode: Mode;
+  onBack: () => void;
+}
+
+const HarmonyModeContent: React.FC<HarmonyModeContentProps> = ({ mode, onBack }) => {
   const [page, setPage] = useState(1);
 
   const renderContent = () => {
@@ -8,7 +14,7 @@ const HarmonyModeContent: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       case 1:
         return (
           <div className="flex flex-col items-center">
-            <h2 className="text-2xl mb-6 text-center">ハモりモード</h2>
+            <h2 className="text-2xl mb-6 text-center">{mode.name}モード</h2>
             <div className="text-lg font-normal text-center mb-6">
               <p>ハモりモードは現在開発中です。</p>
             </div>
