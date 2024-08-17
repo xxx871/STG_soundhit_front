@@ -9,6 +9,7 @@ import { useState } from "react";
 export const useContactForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const form = useForm({
     mode: "onChange",
@@ -21,21 +22,21 @@ export const useContactForm = () => {
 
   const onSubmit = async (value: z.infer<typeof contactFormSchema>) => {
     setIsLoading(true);
+    setError(null);
     const { email, message } = value;
     try {
-      const response = await axios.post("/api/contact", {
+      await axios.post("/api/contact", {
         email,
         message,
       });
-      if (response.status === 200) {
-        router.push("/thanks");
-      } else {
-        alert("正常に送信できませんでした");
-      };
+      router.push("/thanks");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setError('正常に送信できませんでした');
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { form, onSubmit, isLoading };
+  return { form, onSubmit, isLoading, error };
 };

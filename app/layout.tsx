@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Palette_Mosaic } from "next/font/google";
 import "./globals.css";
-import { palettemosaic, recursive } from "@/lib/utils";
 import Header from "./components/layouts/Header/Header";
 import Footer from "./components/layouts/Footer/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const palettemosaic = Palette_Mosaic({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",  
+  variable: "--font-palettemosaic",
+  preload: true,
+}); 
 
 export const metadata: Metadata = {
   title: "Create Next App",

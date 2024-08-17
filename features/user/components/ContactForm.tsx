@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
 const ContactForm = () => {
-  const { form, onSubmit, isLoading } = useContactForm();
+  const { form, onSubmit, isLoading, error } = useContactForm();
   const {
     register,
     handleSubmit,
@@ -41,6 +41,9 @@ const ContactForm = () => {
         {errors.message && <p>※{errors.message.message}</p>}
       </div>
       <div className="mt-8 flex justify-center">
+      {error && (
+            <div className="mb-4 text-white text-center">{error}</div>
+          )}
         <LoadingButton
           type="submit"
           variant="outline"
