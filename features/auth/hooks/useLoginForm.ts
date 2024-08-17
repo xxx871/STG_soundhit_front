@@ -1,9 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { loginFormSchema } from "../validation/loginFormSchema";
+import { loginFormSchema } from "@/features/auth/validation/loginFormSchema";
 import { z } from "zod";
-import { login } from "../api/login";
+import { login } from "@/features/auth/api/login";
 import { useState } from "react";
 
 export const useLoginForm = () => {
@@ -30,14 +30,13 @@ export const useLoginForm = () => {
       });
 
       if (response.error) {
-        console.log(response.error.message);
-        throw response.error;
+        setServerError("ログインに失敗しました。");
       }
 
       router.push("/");
       router.refresh();
-    } catch (error: any) {
-      setServerError(error.message);
+    } catch (error) {
+      setServerError("ログインに失敗しました。");
     } finally {
       setIsLoading(false);
     }

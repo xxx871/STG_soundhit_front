@@ -26,7 +26,7 @@ const Header = async () => {
           </Link>
           <nav className="flex justify-end items-center text-2xl font-medium text-white">
             <ModalTutorial modes={modes}/>
-            <Link href="/rankings" className="transition-colors hover:text-gray-300 mx-6">
+            <Link href="/ranking" className="transition-colors hover:text-gray-300 mx-6">
               ランキング
             </Link>
             {isLoggedIn ? (

@@ -1,4 +1,3 @@
-
 import { authOptions } from "@/features/auth/api/authOptions";
 import NextAuth from "next-auth/next";
 
