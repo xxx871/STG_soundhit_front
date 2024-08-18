@@ -21,6 +21,6 @@ const DifficultySelect = ({ difficulties, onSelect }: DifficultSelectProps) => {
       </SelectContent>
     </Select>
   );
-}
+};
 
 export default DifficultySelect;

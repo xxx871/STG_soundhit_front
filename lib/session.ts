@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { axiosInstance } from './axios';
+import { axiosInstance } from '@/lib/axios';
 
 export const getUserSession = async () => {
   const cookieStore = cookies();
@@ -22,6 +22,6 @@ export const getUserSession = async () => {
     return response.data;
   } catch (error) {
     console.error("Error fetching user session:", error);
-    return null; // エラーが発生した場合もnullを返す
+    return null;
   }
 };

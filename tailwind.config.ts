@@ -21,10 +21,10 @@ const config = {
     extend: {
       fontFamily: {
         recursive: "var(--font-recursive)",
-        palettemosaic: "var(--font-palettemosaic)"
+        palettemosaic: "var(--font-palettemosaic)",
       },
       backgroundImage: {
-        'hero-pattern': "url('/blue_00015.jpg')",
+        'hero-pattern': "url('/background_image.jpg')",
       },
       colors: {
         border: "hsl(var(--border))",

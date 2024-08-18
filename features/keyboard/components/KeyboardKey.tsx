@@ -1,6 +1,6 @@
 import { Note } from "@/types/interface";
 import React from "react";
-import { getKeyStyle } from "./styles";
+import { getKeyStyle } from "@/features/keyboard/components/styles";
 
 interface KeyboardKeyProps {
   note: Note;

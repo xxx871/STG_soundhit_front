@@ -7,6 +7,6 @@ const PasswordChange = () => {
       <PasswordChangeForm />
     </div>
   )
-}
+};
 
-export default PasswordChange
+export default PasswordChange;

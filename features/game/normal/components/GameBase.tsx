@@ -34,7 +34,7 @@ const GameBase: React.FC<GameBaseProps> = ({ noteInfo, playNote, showPlayButton 
                   className="w-20 h-20 border-2 border-black rounded-full flex items-center justify-center transition-all hover:scale-105 mt-4"
                 >
                   <Image
-                    src="/1111.png"
+                    src="/speaker.png"
                     alt="音を再生"
                     width={40}
                     height={40}
@@ -51,6 +51,6 @@ const GameBase: React.FC<GameBaseProps> = ({ noteInfo, playNote, showPlayButton 
       </div>
     </main>
   )
-}
+};
 
-export default GameBase
+export default GameBase;

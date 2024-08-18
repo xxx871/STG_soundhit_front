@@ -2,10 +2,10 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-import DifficultySelect from './DifficultySelect';
-import GenderSelect from './GenderSelect';
+import DifficultySelect from '@/features/game/select/components/DifficultySelect';
+import GenderSelect from '@/features/game/select/components/GenderSelect';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
-import { combineDifficultWithDescription, combineGenderWithDescription, DifficultWithDescription, GenderWithDescription } from '../utils/combineWithDescription';
+import { combineDifficultWithDescription, combineGenderWithDescription, DifficultWithDescription, GenderWithDescription } from '@/features/game/select/utils/combineWithDescription';
 
 interface DifficultGenderSelectProps {
   genders: { id: number; name: string }[];
@@ -18,7 +18,6 @@ export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
   genders,
   difficulties,
   userInfo,
-  // modes,
 }) => {
   const difficultiesWithDescriptions = difficulties.map(combineDifficultWithDescription);
   const gendersWithDescriptions = genders.map(combineGenderWithDescription);
@@ -100,6 +99,6 @@ export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
         </div>
       </div>
   )
-}
+};
 
 export default DifficultGenderSelect;

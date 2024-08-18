@@ -1,8 +1,8 @@
-import { Note } from '@/types/interface'
-import React from 'react'
-import { useKeyboard } from '../hooks/useKeyboard';
+import { Note } from '@/types/interface';
+import React from 'react';
+import { useKeyboard } from '@/features/keyboard/hooks/useKeyboard';
 import { Button } from '@/components/ui/button';
-import KeyboardModal from './KeyboardModal';
+import KeyboardModal from '@/features/keyboard/components/KeyboardModal';
 
 const Keyboard: React.FC<{ notes: Note[] }> = ({ notes }) => {
   const { isModalOpen, openModal, closeModal } = useKeyboard();

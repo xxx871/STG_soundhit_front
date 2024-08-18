@@ -61,6 +61,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ name, gender, highNote, lowNo
       </div>
     </div>
   )
-}
+};
 
-export default UserProfile
+export default UserProfile;

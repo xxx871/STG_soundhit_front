@@ -3,7 +3,7 @@
 import { Difficult, Mode, User } from '@/types/interface'
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-import { updateScore } from '../api/updateScore';
+import { updateScore } from '@/features/game/api/updateScore';
 import { Button } from '@/components/ui/button';
 import { XIcon, TwitterShareButton, LineShareButton, LineIcon } from 'react-share';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
@@ -96,6 +96,6 @@ const ResultContent: React.FC<resultContentProps> = ({ userInfo, modes, difficul
       </div>
     </main>
   )
-}
+};
 
-export default ResultContent
+export default ResultContent;

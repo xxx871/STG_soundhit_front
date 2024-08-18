@@ -15,6 +15,6 @@ const Ranking = async () => {
       />
     </>
   )
-}
+};
 
-export default Ranking
+export default Ranking;

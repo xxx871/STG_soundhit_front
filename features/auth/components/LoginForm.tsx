@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import { useLoginForm } from '../hooks/useLoginForm';
+import { useLoginForm } from '@/features/auth/hooks/useLoginForm';
 import { Input } from '@/components/ui/input';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
@@ -53,6 +53,6 @@ const LoginForm = () => {
       </form>
     </div>
   )
-}
+};
 
-export default LoginForm
+export default LoginForm;

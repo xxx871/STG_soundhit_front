@@ -93,7 +93,7 @@ const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes, onResul
           <span className="text-xl">収音中...</span>
         ) : (
           <Image
-            src="/8549.png"
+            src="/mike.png"
             alt="Start Recording"
             width={30}
             height={30}
@@ -114,6 +114,6 @@ const VoiceAnalysis:React.FC<VoiceAnalysisProps> = ({ targetNote, notes, onResul
       </div>
     </div>
   )
-}
+};
 
-export default VoiceAnalysis
+export default VoiceAnalysis;

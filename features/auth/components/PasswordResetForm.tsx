@@ -1,8 +1,8 @@
 "use client"
 
 import React from 'react'
-import { usePasswordResetForm } from '../hooks/usePasswordResetForm';
 import { Input } from '@/components/ui/input';
+import { usePasswordResetForm } from '@/features/auth/hooks/usePasswordResetForm';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
 const PasswordResetForm = () => {
@@ -42,6 +42,6 @@ const PasswordResetForm = () => {
       </form>
     </div>
   )
-}
+};
 
-export default PasswordResetForm
+export default PasswordResetForm;

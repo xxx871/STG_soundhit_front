@@ -1,10 +1,10 @@
 "use client"
 
 import React from 'react'
-import { useModalTutorial } from '../hooks/useModalTutorial';
-import Modal from './Modal';
-import HomeContent from './HomeContent';
-import { ModeContent } from './ModeContent';
+import { useModalTutorial } from '@/features/tutorial//hooks/useModalTutorial';
+import Modal from '@/features/tutorial/components/Modal';
+import HomeContent from '@/features/tutorial/components/HomeContent';
+import { ModeContent } from '@/features/tutorial/components/ModeContent';
 import { Mode } from '@/types/interface';
 
 interface ModalTutorialProps {

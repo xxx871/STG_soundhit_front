@@ -1,5 +1,5 @@
-import UserProfile from "@/features/user/components/UserProfile";
 import { getProfile } from "@/lib/api/getProfile";
+import UserProfile from "@/features/user/components/UserProfile";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from 'react'
@@ -30,6 +30,6 @@ const Profile = async () => {
       </div>
     </div>
   )
-}
+};
 
-export default Profile
+export default Profile;

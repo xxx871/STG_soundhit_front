@@ -1,8 +1,8 @@
 import { GameUser, Note } from "@/types/interface";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getUserNotesRange } from "../api/getUserNotesRange";
-import { getGenderNotesRange } from "../api/getGenderNotesRange";
+import { getUserNotesRange } from "@/features/game/api/getUserNotesRange";
+import { getGenderNotesRange } from "@/features/game/api/getGenderNotesRange";
 import * as Tone from "tone";
 
 export const useGameLogic = (userInfo: GameUser, filterSharpNotes: boolean = false) => {
@@ -60,9 +60,9 @@ const getNotes = async (userInfo: GameUser, searchParams: URLSearchParams): Prom
       const notes = await getGenderNotesRange(gender_id);
       return notes;
     } else if (!user_high_note && !user_low_note && !gender_id) {
-        const genderId = parseInt(searchParams.get('genderId') || '', 10);
-        const notes = await getGenderNotesRange(genderId);
-        return notes;
+      const genderId = parseInt(searchParams.get('genderId') || '', 10);
+      const notes = await getGenderNotesRange(genderId);
+      return notes;
     }
   }
   const genderId = parseInt(searchParams.get('genderId') || '', 10);

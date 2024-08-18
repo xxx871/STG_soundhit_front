@@ -21,6 +21,6 @@ const GenderSelect = ({ genders, onSelect }: GenderSelectProps) => {
       </SelectContent>
     </Select>
   );
-}
+};
 
-export default GenderSelect
+export default GenderSelect;
