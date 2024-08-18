@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Note } from "@/types/interface";
-import KeyboardKey from './KeyboardKey';
-import { useKeyboard } from '../hooks/useKeyboard';
+import KeyboardKey from '@/features/keyboard/components/KeyboardKey';
+import { useKeyboard } from '@/features/keyboard/hooks/useKeyboard';
 
 interface KeyboardModalProps {
   notes: Note[];

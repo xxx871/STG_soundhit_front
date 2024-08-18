@@ -2,7 +2,7 @@
 
 import { Gender, Note, User } from '@/types/interface';
 import React from 'react'
-import { useEditForm } from '../hooks/useEditForm';
+import { useEditForm } from '@/features/user/hooks/useEditForm';
 import { Input } from '@/components/ui/input';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
 import Keyboard from '@/features/keyboard/components/Keyboard';
@@ -121,6 +121,6 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
       </form>
     </div>
   )
-}
+};
 
-export default EditProfileForm
+export default EditProfileForm;

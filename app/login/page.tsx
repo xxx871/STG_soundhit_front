@@ -1,7 +1,7 @@
-import ExternalAuthButton from '@/features/auth/components/ExternalAuthButton'
-import LoginForm from '@/features/auth/components/LoginForm'
-import Link from 'next/link'
-import React from 'react'
+import ExternalAuthButton from '@/features/auth/components/ExternalAuthButton';
+import LoginForm from '@/features/auth/components/LoginForm';
+import Link from 'next/link';
+import React from 'react';
 
 const Login = () => {
   return (
@@ -12,7 +12,7 @@ const Login = () => {
           <span className="w-full border-t"/>
         </div>
         <div className="relative flex justify-center text-xm text-white">
-          <span className="px-2 my-2 backdrop-blur-sm">
+        <span className="px-2 my-2 backdrop-blur-sm">
             または
           </span>
         </div>
@@ -32,7 +32,7 @@ const Login = () => {
         </Link>
       </div>
     </div>
-  )
+  );
 };
 
 export default Login;

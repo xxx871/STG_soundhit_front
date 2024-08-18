@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Page } from "../utils/types";
+import { Page } from "@/features/tutorial/utils/types";
 
 export const useModalTutorial = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

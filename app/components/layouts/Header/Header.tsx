@@ -17,7 +17,7 @@ const Header = async () => {
         <div className="flex items-center justify-between space-y-2 md:space-y-0 md:space-x-6 text-white">
           <Link href="/" className="text-2xl font-bold font-palettemosaic flex items-center">
             <Image
-              src="/note_rotated_new.png"
+              src="/header_icon.png"
               alt="Header Icon"
               height={50}
               width={50}
@@ -48,6 +48,6 @@ const Header = async () => {
       </div>
     </header>
   )
-}
+};
 
-export default Header
+export default Header;

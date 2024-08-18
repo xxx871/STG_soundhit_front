@@ -1,5 +1,5 @@
 import { Difficult, Gender, Mode } from "@/types/interface";
-import { difficultyDescriptions, genderDescriptions, modeDescriptions } from "../constants/descriptions";
+import { difficultyDescriptions, genderDescriptions, modeDescriptions } from "@/features/game/select/constants/descriptions";
 
 export interface WithDescription {
   description: string;

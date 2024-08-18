@@ -1,9 +1,9 @@
 "use client"
 
 import React from 'react'
-import { useContactForm } from '../hooks/useContactForm';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { useContactForm } from '@/features/user/hooks/useContactForm';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
 const ContactForm = () => {
@@ -40,10 +40,8 @@ const ContactForm = () => {
         />
         {errors.message && <p>※{errors.message.message}</p>}
       </div>
+      {error && <p className="text-white">{error}</p>}
       <div className="mt-8 flex justify-center">
-      {error && (
-            <div className="mb-4 text-white text-center">{error}</div>
-          )}
         <LoadingButton
           type="submit"
           variant="outline"
@@ -56,6 +54,6 @@ const ContactForm = () => {
       </form>
     </div>
   )
-}
+};
 
-export default ContactForm
+export default ContactForm;

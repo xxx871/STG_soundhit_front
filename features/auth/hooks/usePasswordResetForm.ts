@@ -1,9 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { passwordResetFormSchema } from "../validation/passwordResetFormSchema";
+import { passwordResetFormSchema } from "@/features/auth/validation/passwordResetFormSchema";
 import { z } from "zod";
-import { passwordReset } from "../api/passwordReset";
+import { passwordReset } from "@/features/auth/api/passwordReset";
 
 export const usePasswordResetForm = () => {
   const [serverError, setServerError] = useState<string | null>(null);

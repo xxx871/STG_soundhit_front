@@ -5,7 +5,7 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue, SelectGr
 import { Mode } from '@/types/interface';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
-import { combineModeWithDescription, ModeWithDescription } from '../utils/combineWithDescription';
+import { combineModeWithDescription, ModeWithDescription } from '@/features/game/select/utils/combineWithDescription';
 
 export interface ModeSelectProps {
   modes: Mode[];

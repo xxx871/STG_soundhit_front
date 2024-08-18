@@ -1,8 +1,8 @@
 import { GameUser, Note } from '@/types/interface'
 import React from 'react'
-import { useGameLogic } from '../../hooks/useGameLogic';
-import GameBase from './GameBase';
-import VoiceAnalysis from '../../components/VoiceAnalysis';
+import { useGameLogic } from '@/features/game/hooks/useGameLogic';
+import GameBase from '@/features/game/normal/components/GameBase';
+import VoiceAnalysis from '@/features/game/components/VoiceAnalysis';
 
 interface HardGameProps {
   userInfo: GameUser;

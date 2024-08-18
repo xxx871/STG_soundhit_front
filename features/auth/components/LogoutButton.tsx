@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import React, { ReactNode, useState } from 'react'
-import { logout } from '../api/logout';
+import { logout } from '@/features/auth/api/logout';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
 export interface ButtonProps {

@@ -1,9 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { signUpFormSchema } from "../validation/signUpFormSchema";
+import { signUpFormSchema } from "@/features/auth/validation/signUpFormSchema";
 import { z } from "zod";
-import { signUp } from "../api/signUp";
+import { signUp } from "@/features/auth/api/signUp";
 import { useState } from "react";
 
 export const useSignupForm = () => {

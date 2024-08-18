@@ -7,6 +7,6 @@ const PasswordReset = () => {
       <PasswordResetForm />
     </div>
   )
-}
+};
 
-export default PasswordReset
+export default PasswordReset;

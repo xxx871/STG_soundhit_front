@@ -1,5 +1,5 @@
-import { Mode } from '@/types/interface';
 import React, { useState } from 'react';
+import { Mode } from '@/types/interface';
 
 interface PracticeModeContentProps {
   mode: Mode;

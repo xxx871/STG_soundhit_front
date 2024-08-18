@@ -1,8 +1,8 @@
 import React from 'react'
-import { Page } from '../utils/types'
-import NormalModeContent from './NormalModeContent';
-import PracticeModeContent from './PracticeModeContent';
-import HarmonyModeContent from './HarmonyModeContent';
+import { Page } from '@/features/tutorial/utils/types'
+import NormalModeContent from '@/features/tutorial/components/NormalModeContent';
+import PracticeModeContent from '@/features/tutorial/components/PracticeModeContent';
+import HarmonyModeContent from '@/features/tutorial/components/HarmonyModeContent';
 import { Mode } from '@/types/interface';
 
 interface ModeContentProps {

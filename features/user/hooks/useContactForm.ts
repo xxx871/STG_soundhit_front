@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { contactFormSchema } from "../validation/contactFormSchema";
+import { contactFormSchema } from "@/features/user/validation/contactFormSchema";
 import { z } from "zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";

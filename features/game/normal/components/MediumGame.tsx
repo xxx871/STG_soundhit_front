@@ -1,7 +1,7 @@
 import { GameUser } from '@/types/interface';
 import React from 'react'
-import { useGameLogic } from '../../hooks/useGameLogic';
-import GameBase from './GameBase';
+import { useGameLogic } from '@/features/game/hooks/useGameLogic';
+import GameBase from '@/features/game/normal/components/GameBase';
 
 interface MediumGameProps {
   onPlayNote: (note: string) => void;
@@ -15,7 +15,7 @@ const MediumGame: React.FC<MediumGameProps> = ({ userInfo, onPlayNote }) => {
     <div>
       <GameBase noteInfo={noteInfo} playNote={() => playNote(onPlayNote)} />
     </div>
-  )
-}
+  );
+};
 
 export default MediumGame;

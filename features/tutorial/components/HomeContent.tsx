@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page } from '../utils/types';
+import { Page } from '@/features/tutorial/utils/types';
 import Image from 'next/image';
 import { Mode } from '@/types/interface';
 
@@ -12,7 +12,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({ modes, onModeSelect })
   const getButtonColor = (index: number) => {
     const colors = ['bg-green-500', 'bg-blue-500', 'bg-yellow-500'];
     return colors [index % colors.length];
-  };
+  }
 
   return (
     <div className="flex flex-col items-center">

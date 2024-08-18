@@ -18,6 +18,6 @@ const Result = async () => {
       />
     </div>
   )
-}
+};
 
-export default Result
+export default Result;

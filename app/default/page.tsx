@@ -22,6 +22,6 @@ const Default = async () => {
     </main>
 
   );
-}
+};
 
-export default Default
+export default Default;

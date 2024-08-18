@@ -2,10 +2,10 @@ import { Note, User } from "@/types/interface";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { EditFormSchema } from "../validation/EditFormSchema";
+import { EditFormSchema } from "@/features/user/validation/EditFormSchema";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
-import { profileEdit } from "../api/profileEdit";
+import { profileEdit } from "@/features/user/api/profileEdit";
 
 export const useEditForm = (userData: User, notes: Note[]) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,11 +33,13 @@ export const useEditForm = (userData: User, notes: Note[]) => {
 
   if (user_high_note && !highNote) {
     setErrorMessage("指定された音域高が見つかりません");
+    setIsLoading(false);
     return;
   }
 
   if (user_low_note && !lowNote) {
     setErrorMessage("指定された音域低が見つかりません");
+    setIsLoading(false);
     return;
   }
 
@@ -51,6 +53,7 @@ export const useEditForm = (userData: User, notes: Note[]) => {
 
     if (response.error) {
       setErrorMessage(response.error.message);
+      setIsLoading(false);
       return;
     }
     
