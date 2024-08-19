@@ -40,7 +40,7 @@ export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
   };
 
   useEffect(() => {
-    setShowGenderSelect(!userInfo || !userInfo.user_low_note && !userInfo.user_high_note );
+    setShowGenderSelect(!userInfo || !userInfo.user_low_note && !userInfo.user_high_note && !userInfo.gender_id );
   }, [userInfo]);
 
   const handleStartClick = () => {
