@@ -32,7 +32,7 @@ https://sound-hit.vercel.app/
 
 | トップ画面 |　ログイン画面 |
 | ---- | ---- |
-| ![Top画面](https://gyazo.com/567d86add9e5c2e502f173005933e0af.png) | ![ログイン画面](https://gyazo.com/dc5f1dc91ecca910d502f8fc0e912c6c.png) |
+| ![Top画面](https://gyazo.com/4b26e510a24430a824eb66c20590903e.png) | ![ログイン画面](https://gyazo.com/dc5f1dc91ecca910d502f8fc0e912c6c.png) |
 | 登録せずにサービスをお試しいただくためのトライアル機能を実装しました。 | ログインIDとパスワードでの認証機能を実装しました。 |
 
 | 事業者選択画面 |　請求書作成画面 |
