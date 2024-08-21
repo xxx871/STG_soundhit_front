@@ -4,15 +4,12 @@
 
 ## ■サービスのURL
 ログインなしでもお遊びいただけます。
-
 https://sound-hit.vercel.app/
 
-
 ## ■サービス概要
-音ピシャは、カラオケや楽器演奏で最初の1音目をドンピシャで当てれるように練習するための音声測定サービスです。
+おんぴしゃは、カラオケや楽器演奏で最初の1音目をドンピシャで当てれるように練習するための音声測定サービスです。
 - デバイスから発生した音と同じ高さの声・音が出たか測定します。
 - 何回連続で音を当てれたか記録し、ランキング形式で表示します。
-
 
 ## ■このサービスへの想い・作りたい理由
 カラオケや楽器演奏の上達の要因の1つとして、自分のイメージしている音がすぐに出せるかどうかがあると思います。
@@ -28,7 +25,6 @@ https://sound-hit.vercel.app/
 
 ## ■サービスの利用イメージ
 一定の音域の中でランダムに音を発生させ、その後ユーザーが発生した音の高さと揃っているか判定します。
-ユーザーは音感を鍛えることができ、連続で当てれるほどランキング上位に入ることができます。
 
 |トップ画面|会員登録|
 |:-:|:-:|
@@ -38,7 +34,7 @@ https://sound-hit.vercel.app/
 |ログイン画面|遊び方画面|
 |:-:|:-:|
 |![ログイン画面](https://i.gyazo.com/2a5b495abd2e968af1c1b166a8406d09.jpg)|![遊び方画面](https://i.gyazo.com/407e7346491c1a4a18fa0eb8b93f71a6.jpg)|
-|メールアドレスとパスワードでログインするか、Github・Googleでもログインをすることができます。|このサービスの使い方と主な機能の紹介を見ることができます。|
+|メールアドレスとパスワードでのログイン、またGithub・Googleでもログインをすることができます。|このサービスの使い方と主な機能の紹介を見ることができます。|
 
 |プロフィール画面|プロフィール編集画面|
 |:-:|:-:|
@@ -64,15 +60,7 @@ https://sound-hit.vercel.app/
 カラオケアプリ、再生された音の高さを当てるアプリ、発声した音程をチェックするアプリはありますが、デバイスからランダムで出た音と実際に自分が発した音声が合っているか判定するサービスはありませんでした。
 吹奏楽などで使うチューナーやカラオケとは異なり、第1音の発生に焦点を置いているところがポイントです。
 
-
-## ■画面遷移図
-Figma : https://www.figma.com/file/ATFMmWCGUM49Lc8pyUutuV/sound_hit?type=design&node-id=0%3A1&mode=design&t=DmyONjpwjUrwYCXh-1
-
-## ■ER図
-![ER図](https://gyazo.com/c94bc6e2ceb93394dd8f5f385ff1047d.png)
-(https://gyazo.com/c94bc6e2ceb93394dd8f5f385ff1047d)
-
-## ■使用予定技術
+## ■使用技術
 |カテゴリ|技術|
 |:-------------|:------------|
 |開発環境|Docker|
@@ -86,6 +74,11 @@ Figma : https://www.figma.com/file/ATFMmWCGUM49Lc8pyUutuV/sound_hit?type=design&
 |インフラ|Vercel / fly.io|
 |Web API|Web Audio API|
 
+## ■画面遷移図
+Figma : https://www.figma.com/file/ATFMmWCGUM49Lc8pyUutuV/sound_hit?type=design&node-id=0%3A1&mode=design&t=DmyONjpwjUrwYCXh-1
+
+## ■ER図
+[![ER図](https://i.gyazo.com/190ef57e63607d41167dd2d0de21ae3a.png)](https://gyazo.com/190ef57e63607d41167dd2d0de21ae3a)
 
 ## ■現在検討している追加サービス案
 - ### 練習モード
