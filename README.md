@@ -32,7 +32,7 @@ https://sound-hit.vercel.app/
 
 |トップ画面|会員登録|
 |:-:|:-:|
-|[![Image from Gyazo](https://i.gyazo.com/714754c148cd385eab114b94736d61a2.png)](https://gyazo.com/714754c148cd385eab114b94736d61a2)|[![Image from Gyazo](https://i.gyazo.com/714754c148cd385eab114b94736d61a2.png)](https://gyazo.com/714754c148cd385eab114b94736d61a2)|
+|[![Image from Gyazo](https://i.gyazo.com/1e5d17df4f0449b745d1ed05322cf055.jpg)](https://gyazo.com/1e5d17df4f0449b745d1ed05322cf055)|[![Image from Gyazo](https://i.gyazo.com/1e5d17df4f0449b745d1ed05322cf055.jpg)](https://gyazo.com/1e5d17df4f0449b745d1ed05322cf055)|
 |右上のメニューボタンから会員登録をすることでサービスを利用することができます。|名前、メールアドレス、都道府県、パスワードを入力して登録を行うか、LINEで登録することもできます。
 
 |ログイン画面|サービスの使い方画面|
