@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 音ピシャのステージング環境（仮）用のリポジトリです。
 
-## Getting Started
+![](https://gyazo.com/b54622738fcaa5bd4b90132600803f40.png)
 
-First, run the development server:
+## ■サービスのURL
+ログインしなくてもお遊びいただけます。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+https://sound-hit.vercel.app/
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ■サービス概要
+音ピシャは、カラオケや楽器演奏で最初の1音目をドンピシャで当てれるように練習するための音声測定サービスです。
+- デバイスから発生した音と同じ高さの声・音が出たか測定します。
+- 何回連続で音を当てれたか記録し、ランキング形式で表示します。
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## ■このサービスへの想い・作りたい理由
+カラオケや楽器演奏の上達の要因の1つとして、自分のイメージしている音がすぐに出せるかどうかがあると思います。
+今以上に気持ちよく歌ったり、上手に演奏することができるためにゲーム感覚で音感を鍛えたいと考え、このアプリを作ろうと思いました。
 
-To learn more about Next.js, take a look at the following resources:
+## ■想定されるユーザー層
+- 歌い初めや演奏し初めに音がぶれてしまう方。
+- 音感を鍛えたい方。
+- イメージどおりの音を出せることに自信のある方。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+私自身、歌いだしにぴったり音を当てることに困難を感じているため、そのような方を対象としています。また、音をぴったり当てれる方にもランキング形式を採用することで上位ランクインを目的にご利用いただけると考えています。
+カラオケや楽器演奏がうまくなりたい方、音感で競いたい方などが対象です。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## ■サービスの利用イメージ
+一定の音域の中でランダムに音を発生させ、その後ユーザーが発生した音の高さと揃っているか判定します。
+ユーザーは音感を鍛えることができ、連続で当てれるほどランキング上位に入ることができます。
 
-## Deploy on Vercel
+| トップ画面 |　ログイン画面 |
+| ---- | ---- |
+| [![Top画面](https://gyazo.com/567d86add9e5c2e502f173005933e0af.png)] | ![ログイン画面](https://gyazo.com/dc5f1dc91ecca910d502f8fc0e912c6c.png) |
+| 登録せずにサービスをお試しいただくためのトライアル機能を実装しました。 | ログインIDとパスワードでの認証機能を実装しました。 |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| 事業者選択画面 |　請求書作成画面 |
+| ---- | ---- |
+| ![事業者選択画面](/.png) | ![請求書作成画面](/.png) |
+| 登録済みの複数の事業者の中から、請求書を作成したい事業者を選択する機能を実装しました。 | 請求書の作成機能・マスタデータの呼び出し機能・税率変更機能・税率別内訳の計算機能、合計金額の計算機能を実装しました。 |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+| 請求書詳細画面 |　PDF出力画面 |
+| ---- | ---- |
+| ![請求書詳細画面](/.png) | ![　PDF出力画面](/.png) |
+| 請求書データの表示機能を実装しました。 | PDFでの請求書発行機能を実装しました。 |
+
+| 登録するマスタの選択画面 |　マスタの登録画面 |
+| ---- | ---- |
+| ![請求書詳細画面](/.png) | ![　PDF出力画面](/.png) |
+| 事業者情報と備考欄情報のマスタ登録機能を実装しました。 | マスタ情報の登録をすることで、請求書の作成時にデータを呼び出すことができます。 |
+
+## ■サービスの差別化ポイント・推しポイント
+カラオケアプリ、再生された音の高さを当てるアプリ、発声した音程をチェックするアプリはありますが、デバイスからランダムで出た音と実際に自分が発した音声が合っているか判定するサービスはありませんでした。
+吹奏楽などで使うチューナーやカラオケとは異なり、第1音の発生に焦点を置いているところがポイントです。
+
+## ■MVPリリース時に実装を予定している機能
+
+### ゲストユーザー
+- ### 音声認識機能
+    マイクで拾った音をweb audio apiでフーリエ変換し、周波数として取得。
+
+  参考：https://qiita.com/youtoy/items/3a8395c948db1c40cfae
+
+- ### 音声出力機能
+    web audio apiライブラリのtone.jsを用いて音声を出力。
+
+- ### 音声判定機能
+    出力音声の周波数と入力音声の周波数が揃っているか判定。
+
+
+### ログインユーザー(ゲストユーザーに機能追加)
+- ### ユーザー登録
+    ユーザー登録時に発声可能な低い音と高い音を測定し、出題される音域を設定できる（任意）。
+- ### ログイン・ログアウト
+- ### パスワードリセット
+- ### ランキング機能
+    何音連続で当てれたかを記録。ランキング形式で表示。
+
+## ■本リリース時に実装を予定している機能
+- ### X投稿機能
+    何連続で音を当てれたかを投稿。
+
+- ### 性別により音域を分ける機能
+    ゲストユーザーはゲーム開始前に性別を選択。選択された性別で出題される音域が変わる。
+
+- ### 難易度設定機能
+    難易度ごとに出題される音域を設定。「簡単」ではレ3(D3)~ラ4(A4)、「普通」ではファ3(F3)~ファ5(F5)など。
+
+- ### テストの実装
+
+## ■現在検討している追加サービス案
+- ### 音の確認
+    ピアノの鍵盤を表示してクリックで音を再生。音階の確認ができる（tone.js）
+
+- ### ハモり練習
+    出題された音階とハモる音（ドを出題した場合はミを発声するなど）を出す練習をする機能。
+    なお、このアプリではハモる音を主旋律の3度上もしくは3度下とする。
+
+- ### 上級者向け機能(難易度：難しいに追加)
+    音を出力せずに音階のみを画面で指定して、ユーザーはヒントなしに音を当てる機能。
+
+- ### 連続音当て機能
+    連続で音当てをし、10回中何回当てれたかを計測する機能。
+
+
+## ■画面遷移図
+Figma : https://www.figma.com/file/ATFMmWCGUM49Lc8pyUutuV/sound_hit?type=design&node-id=0%3A1&mode=design&t=DmyONjpwjUrwYCXh-1
+
+## ■ER図
+![ER図](https://gyazo.com/c94bc6e2ceb93394dd8f5f385ff1047d.png)
+(https://gyazo.com/c94bc6e2ceb93394dd8f5f385ff1047d)
+
+## ■使用予定技術
+|カテゴリ|技術|
+|:-------------|:------------|
+|開発環境|Docker|
+|フロントエンド|TypeScript / React / Next.js|
+|バックエンド|Ruby / Ruby on Rails(API モード)|
+|データベース|PostgreSQL|
+|認証|NextAuth.js|
+|UI構築|shadcn/ui|
+|CSSフレームワーク|Tailwind CSS|
+|インフラ|Vercel / fly.io|
+|Web API|Web Audio API|
