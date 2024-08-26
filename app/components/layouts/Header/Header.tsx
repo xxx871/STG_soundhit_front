@@ -4,7 +4,7 @@ import Image from 'next/image';
 import ModalTutorial from '@/features/tutorial/components/ModalTutorial';
 import AuthButtons from '@/features/auth/components/AuthButtons';
 
-const Header = () => {
+const Header = async () => {
   return (
     <header className="divide-y border-gray-200 dark:border-gray-800 border-b bg-inherit h-12 flex items-center">
       <div className="px-4 md:py-2 lg:px-6 w-full">
