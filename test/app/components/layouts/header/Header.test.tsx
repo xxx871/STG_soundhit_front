@@ -2,7 +2,7 @@ import Header from "@/app/components/layouts/Header/Header";
 import { getUserSession } from "@/lib/session";
 import { modeHandlers } from "@/test/mocks/modeMock";
 import { APIserver } from "@/vitest-setup";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
@@ -36,7 +36,10 @@ describe('ヘッダー', () => {
     vi.mocked(getUserSession).mockResolvedValue({ is_login: true });
     render(await Header());
 
-    expect(screen.getByText("おんぴしゃ")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("おんぴしゃ")).toBeInTheDocument();
+    });
+
     expect(screen.getByText("遊び方")).toBeInTheDocument();
     expect(screen.getByText("ランキング")).toBeInTheDocument();
     expect(screen.getByText("プロフィール")).toBeInTheDocument();
@@ -46,6 +49,10 @@ describe('ヘッダー', () => {
 
   test("'遊び方'ボタンをクリックするとモーダルが開く", async () => {
     render(await Header());
+
+    await waitFor(() => {
+      expect(screen.getByText("おんぴしゃ")).toBeInTheDocument();
+    });
 
     await userEvent.click(screen.getByText("遊び方"));
 
@@ -59,6 +66,9 @@ describe('ヘッダー', () => {
     const { logout } = await import('@/features/auth/api/logout');
 
     render(await Header());
+    await waitFor(() => {
+      expect(screen.getByText("おんぴしゃ")).toBeInTheDocument();
+    });
 
     await userEvent.click(screen.getByText("ログアウト"));
     expect(logout).toHaveBeenCalled();
@@ -79,6 +89,9 @@ describe('ヘッダー', () => {
     test("プロフィールリンクをクリックするとプロフィールページに遷移する", async () => {
     vi.mocked(getUserSession).mockResolvedValue({ is_login: true });
     render(await Header());
+    await waitFor(() => {
+      expect(screen.getByText("おんぴしゃ")).toBeInTheDocument();
+    });
     const profile = screen.getByText("プロフィール");
     expect(profile).toHaveAttribute('href', "/profile");
   });
@@ -86,6 +99,9 @@ describe('ヘッダー', () => {
     test("ログインボタンをクリックするとログインページに遷移する", async () => {
     vi.mocked(getUserSession).mockResolvedValue({ is_login: false });
     render(await Header());
+    await waitFor(() => {
+      expect(screen.getByText("おんぴしゃ")).toBeInTheDocument();
+    });
 
     const loginButton = screen.getByText("ログイン");
     expect(loginButton).toHaveAttribute('href', "/login");

@@ -1,12 +1,11 @@
-import { cookies } from 'next/headers';
 import { axiosInstance } from '@/lib/axios';
+import Cookies from 'js-cookie';
+
+const uid = Cookies.get("uid") || '';
+const client = Cookies.get("client") || '';
+const accessToken = Cookies.get("access-token") || '';
 
 export const getUserSession = async () => {
-  const cookieStore = cookies();
-  const uid = cookieStore.get('uid')?.value;
-  const client = cookieStore.get('client')?.value;
-  const accessToken = cookieStore.get('access-token')?.value;
-
   if (!uid || !client || !accessToken) {
     return null;
   }

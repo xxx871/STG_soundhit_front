@@ -17,6 +17,7 @@ export default defineConfig({
         "components/**/*.{ts,tsx}",
         "!app/api/**/*.{ts,tsx}",
         "!app/layout.tsx",
+        "lib/**/*.{ts,tsx}",
       ],
     },
   },

@@ -4,18 +4,37 @@ import { LoadingButton } from '@/app/components/elements/LoadingButton';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue, SelectGroup } from '@/components/ui/select';
 import { Mode } from '@/types/interface';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { combineModeWithDescription, ModeWithDescription } from '@/features/game/select/utils/combineWithDescription';
+import { getModes } from '@/lib/api/getModes';
 
-export interface ModeSelectProps {
-  modes: Mode[];
-}
-
-export const ModeSelect = ({ modes }: ModeSelectProps) => {
-  const modesWithDescriptions = modes.map(combineModeWithDescription);
+export const ModeSelect = () => {
+  const [modes, setModes] = useState<Mode[]>([]);
+  const [modesWithDescriptions, setModesWithDescriptions] = useState<ModeWithDescription[]>([]);
   const [selectedMode, setSelectedMode] = useState<ModeWithDescription | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+
+
+
+  useEffect(() => {
+    async function fetchModes() {
+      try {
+        setIsLoading(true);
+        const fetchedModes = await getModes();
+        setModes(fetchedModes);
+        setModesWithDescriptions(fetchedModes.map(combineModeWithDescription));
+      } catch (error) {
+        console.error('Failed to fetch modes:', error);
+        setError('モードの取得に失敗しました。ページを再読み込みしてもう一度お試しください。');
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchModes();
+  }, []);
 
   const handleModeSelect = (modeId: string) => {
     const mode = modesWithDescriptions.find(mode => mode.id.toString() === modeId);
@@ -46,6 +65,10 @@ export const ModeSelect = ({ modes }: ModeSelectProps) => {
       alert('モードを選択してください');
     }
   };
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
 
   return (
     <div className="flex flex-col items-center text-black w-full">

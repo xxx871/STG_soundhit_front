@@ -59,6 +59,9 @@ describe('トップページ', () => {
   test("モード未選択でSTARTボタンをクリックするとアラートが表示される", async () => {
     const alertMock = vi.spyOn(window, 'alert').mockImplementation(() => {});
     render(await Home());
+    await waitFor(() => {
+      expect(screen.getByRole('combobox')).toHaveTextContent('モードを選択してください');
+    });
     const startButton = screen.getByText('START');
     await userEvent.click(startButton);
 

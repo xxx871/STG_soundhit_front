@@ -22,6 +22,27 @@ const createMockRouter = () => ({
 
 export const mockRouter = createMockRouter();
 
+const createMockSearchParams = () => ({
+  get: vi.fn((param) => {
+    if (param === 'modeId') return '1';
+    return null;
+  }),
+});
+
+export const mockSearchParams = createMockSearchParams();
+
 vi.mock('next/navigation', () => ({
-  useRouter: () => mockRouter
+  useRouter: () => mockRouter,
+  useSearchParams: () => mockSearchParams,
+}));
+
+vi.mock('next/headers', () => ({
+  cookies: vi.fn(() => ({
+    get: vi.fn((name) => {
+      if (name === 'access-token') return { value: 'mock-access-token' };
+      if (name === 'client') return { value: 'mock-client' };
+      if (name === 'uid') return { value: 'mock-uid' };
+      return null;
+    }),
+  })),
 }));

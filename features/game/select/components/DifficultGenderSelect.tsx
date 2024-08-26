@@ -6,12 +6,13 @@ import DifficultySelect from '@/features/game/select/components/DifficultySelect
 import GenderSelect from '@/features/game/select/components/GenderSelect';
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
 import { combineDifficultWithDescription, combineGenderWithDescription, DifficultWithDescription, GenderWithDescription } from '@/features/game/select/utils/combineWithDescription';
+import { Difficult, GameUser, Gender, Mode } from '@/types/interface';
 
 interface DifficultGenderSelectProps {
-  genders: { id: number; name: string }[];
-  difficulties: { id: number; name: string }[];
-  userInfo: any;
-  modes: { id: number; name: string }[];
+  genders: Gender[];
+  difficulties: Difficult[];
+  modes: Mode[];
+  userInfo: GameUser;
 }
 
 export const DifficultGenderSelect: React.FC<DifficultGenderSelectProps> = ({
