@@ -22,7 +22,8 @@ const LogoutButton = ({
     setIsLoading(true);
     try {
       await logout();
-      window.location.href = '/';
+      router.push("/");
+      router.refresh();
     } catch (error) {
       console.error("Logout failed:", error);
     } finally {

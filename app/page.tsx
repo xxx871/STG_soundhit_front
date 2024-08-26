@@ -1,6 +1,10 @@
 import ModeSelect from "@/features/game/select/components/ModeSelect";
+import { getModes } from "@/lib/api/getModes";
+import { Mode } from "@/types/interface";
 
 export default async function Home() {
+  const modes: Mode[] = await getModes();
+
   return (
     <main className="text-white flex flex-col items-center justify-center mt-16">
       <div className="text-center">
@@ -12,7 +16,7 @@ export default async function Home() {
         </p>
       </div>
       <div className="mt-10">
-      <ModeSelect />
+      <ModeSelect modes={modes} />
       </div>
     </main>
   )

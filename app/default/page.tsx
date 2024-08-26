@@ -10,7 +10,6 @@ const Default = async () => {
   const difficulties = await getDifficulties();
   const userInfo = await getProfile();
   const modes = await getModes();
-  console.log(userInfo);
 
   return (
     <main>
