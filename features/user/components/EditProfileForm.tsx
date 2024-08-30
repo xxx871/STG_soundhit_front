@@ -44,7 +44,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
           <select
             id="gender"
             {...register('gender')}
-            defaultValue={userData.gender || ''}
+            defaultValue={userData?.gender || ''}
             className="w-full h-10 text-lg px-2 border border-gray-300 text-gray-900 rounded-sm focus:border-blue-500"
           >
             <option value="">未選択</option>
@@ -65,7 +65,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
           <select
             id="user_high_note"
             {...register('user_high_note')}
-            defaultValue={userData.user_high_note?.ja_note_name || ''}
+            defaultValue={userData?.user_high_note?.ja_note_name || ''}
             className="w-full h-10 text-lg px-2 border border-gray-300 text-gray-900 rounded-sm focus:border-blue-500"
           >
             <option value="">未選択</option>
@@ -86,7 +86,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({ userData, genders, notes 
           <select
             id="user_low_note"
             {...register('user_low_note')}
-            defaultValue={userData.user_low_note?.ja_note_name || ''}
+            defaultValue={userData?.user_low_note?.ja_note_name || ''}
             className="w-full h-10 text-lg px-2 border border-gray-300 text-gray-900 rounded-sm focus:border-blue-500"
           >
             <option value="">未選択</option>

@@ -6,12 +6,21 @@ import { usePasswordResetForm } from '@/features/auth/hooks/usePasswordResetForm
 import { LoadingButton } from '@/app/components/elements/LoadingButton';
 
 const PasswordResetForm = () => {
-  const { form, onSubmit, serverError, isLoading } = usePasswordResetForm();
+  const { form, onSubmit, serverError, isLoading, isSuccess } = usePasswordResetForm();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = form;
+
+  if (isSuccess) {
+    return (
+      <div className="text-white text-center mt-8">
+        <h2 className="text-2xl font-medium">パスワードリセット申請が完了しました。</h2>
+        <p className="text-xl mt-4">メールをご確認ください。</p>
+      </div>
+    );
+  }
 
   return (
     <div>

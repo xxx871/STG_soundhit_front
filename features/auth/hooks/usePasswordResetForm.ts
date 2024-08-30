@@ -8,6 +8,7 @@ import { passwordReset } from "@/features/auth/api/passwordReset";
 export const usePasswordResetForm = () => {
   const [serverError, setServerError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const form = useForm({
     mode: "onChange",
@@ -19,6 +20,8 @@ export const usePasswordResetForm = () => {
 
   const onSubmit = async (value: z.infer<typeof passwordResetFormSchema>) => {
     setIsLoading(true);
+    setServerError(null);
+    setIsSuccess(false);
     const { email } = value;
     try {
       const response = await passwordReset({
@@ -29,12 +32,13 @@ export const usePasswordResetForm = () => {
         console.log(response.error.message);
         throw response.error;
       }
-    } catch (error: any) {
-      setServerError(error.message);
+      setIsSuccess(true);
+    } catch (error) {
+      setServerError((error as Error).message);
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { form, onSubmit, serverError, isLoading };
+  return { form, onSubmit, serverError, isLoading, isSuccess };
 }

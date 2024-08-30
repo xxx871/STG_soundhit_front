@@ -1,27 +1,21 @@
 import Header from "@/app/components/layouts/Header/Header";
-import { getUserSession } from "@/lib/session";
 import { modeHandlers } from "@/test/mocks/modeMock";
+import { errorSessionHandlers, sessionHandlers } from "@/test/mocks/sessionMock";
 import { APIserver } from "@/vitest-setup";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, test, vi } from "vitest";
-
-vi.mock("@/lib/session", () => ({
-  getUserSession: vi.fn()
-}));
-vi.mock('@/features/auth/api/logout', () => ({
-  logout: vi.fn(),
-}));
+import { logoutHandlers } from "./logoutMock";
 
 describe('ヘッダー', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     APIserver.resetHandlers();
-    APIserver.use(...modeHandlers);
+    APIserver.use(...modeHandlers, ...sessionHandlers, ...logoutHandlers);
   });
 
   test("ログインしていない場合、正しいリンクとボタンが表示される", async () => {
-    vi.mocked(getUserSession).mockResolvedValue({ is_login: false });
+    APIserver.use(errorSessionHandlers);
     render(await Header());
 
     expect(await screen.findByText("おんぴしゃ")).toBeInTheDocument();
@@ -33,7 +27,6 @@ describe('ヘッダー', () => {
   });
 
   test("ログインしている場合、正しいリンクとボタンが表示される", async () => {
-    vi.mocked(getUserSession).mockResolvedValue({ is_login: true });
     render(await Header());
 
     await waitFor(() => {
@@ -61,17 +54,22 @@ describe('ヘッダー', () => {
     expect(screen.getByText("練習")).toBeInTheDocument();
   });
 
-  test("ログアウトボタンをクリックするとログアウト処理が実行される", async () => {
-    vi.mocked(getUserSession).mockResolvedValue({ is_login: true });
-    const { logout } = await import('@/features/auth/api/logout');
-
+  test("ログアウトボタンをクリックするとログアウト処理が実行され、ログインボタンが表示される", async () => {
     render(await Header());
+    const logoutButton = screen.getByRole('button', { name: 'ログアウト' });
+    expect(logoutButton).toBeInTheDocument();
+
+    await userEvent.click(logoutButton);
+
     await waitFor(() => {
-      expect(screen.getByText("おんぴしゃ")).toBeInTheDocument();
+      expect(screen.getByText("ログアウト")).toBeInTheDocument();
     });
 
-    await userEvent.click(screen.getByText("ログアウト"));
-    expect(logout).toHaveBeenCalled();
+    APIserver.use(errorSessionHandlers);
+    render(await Header());
+    await waitFor(() => {
+      expect(screen.getByText("ログイン")).toBeInTheDocument();
+    });
   });
 
   test("ヘッダーロゴをクリックするとホームページに遷移する", async () => {
@@ -86,8 +84,7 @@ describe('ヘッダー', () => {
     expect(ranking).toHaveAttribute('href', "/ranking");
   });
 
-    test("プロフィールリンクをクリックするとプロフィールページに遷移する", async () => {
-    vi.mocked(getUserSession).mockResolvedValue({ is_login: true });
+  test("プロフィールリンクをクリックするとプロフィールページに遷移する", async () => {
     render(await Header());
     await waitFor(() => {
       expect(screen.getByText("おんぴしゃ")).toBeInTheDocument();
@@ -96,8 +93,8 @@ describe('ヘッダー', () => {
     expect(profile).toHaveAttribute('href', "/profile");
   });
 
-    test("ログインボタンをクリックするとログインページに遷移する", async () => {
-    vi.mocked(getUserSession).mockResolvedValue({ is_login: false });
+  test("ログインボタンをクリックするとログインページに遷移する", async () => {
+    APIserver.use(errorSessionHandlers);
     render(await Header());
     await waitFor(() => {
       expect(screen.getByText("おんぴしゃ")).toBeInTheDocument();

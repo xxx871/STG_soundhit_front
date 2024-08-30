@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { profileEdit } from "@/features/user/api/profileEdit";
 
-export const useEditForm = (userData: User, notes: Note[]) => {
+export const useEditForm = (userData: User | null, notes: Note[]) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -16,10 +16,10 @@ export const useEditForm = (userData: User, notes: Note[]) => {
     mode: "onChange",
     resolver: zodResolver(EditFormSchema),
     defaultValues: {
-      name: userData.name,
-      gender: userData.gender ?? '',
-      user_high_note: userData.user_high_note?.ja_note_name ?? '',
-      user_low_note: userData.user_low_note?.ja_note_name ?? '',
+      name: userData?.name ?? '',
+      gender: userData?.gender ?? '',
+      user_high_note: userData?.user_high_note?.ja_note_name ?? '',
+      user_low_note: userData?.user_low_note?.ja_note_name ?? '',
     },
   });
 
