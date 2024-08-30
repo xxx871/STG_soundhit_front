@@ -2,12 +2,13 @@ import { getProfile } from "@/lib/api/getProfile";
 import UserProfile from "@/features/user/components/UserProfile";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import React from 'react'
+import React from 'react';
 
 const Profile = async () => {
   const userData = await getProfile();
   if (!userData) {
     redirect("/login");
+    return null;
   }
   const { name, user_high_note: highNote, user_low_note: lowNote, scores, gender } = userData;
 

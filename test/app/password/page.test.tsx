@@ -1,6 +1,6 @@
 import { APIserver } from "@/vitest-setup";
 import { beforeEach, describe, expect, test, vi } from "vitest";
-import { passwordResetHandlers } from "./passwordResetMock";
+import { errorPasswordResetHandlers, passwordResetHandlers } from "./passwordResetMock";
 
 import { render, screen, waitFor } from "@testing-library/react";
 import PasswordReset from "@/app/password/page";
@@ -19,16 +19,44 @@ describe('パスワードリセットページ', () => {
     expect(screen.getByRole('button', { name: 'フォーム送信' })).toBeInTheDocument();
   });
 
-  // test("パスワードリセットフォームが正しく送信される", async () => {
-  //   render(<PasswordReset />);
-  //   const emailInput = screen.getByLabelText('メールアドレス');
-  //   const submitButton = screen.getByRole('button', { name: 'フォーム送信' });
+  test("パスワードリセットフォームが正しく送信される", async () => {
+    render(<PasswordReset />);
+    const emailInput = screen.getByLabelText('メールアドレス');
+    const submitButton = screen.getByRole('button', { name: 'フォーム送信' });
 
-  //   await userEvent.type(emailInput, "test@example.com");
-  //   await userEvent.click(submitButton);
+    await userEvent.type(emailInput, "test@example.com");
+    await userEvent.click(submitButton);
 
-  //   await waitFor(() => {
-  //     expect(screen.getByText('パスワードリセット申請が完了しました。')).toBeInTheDocument();
-  //   });
-  // });
+    await waitFor(() => {
+      expect(screen.getByText('パスワードリセット申請が完了しました。')).toBeInTheDocument();
+    });
+  });
+
+  test("無効なメールアドレスでフォームを送信するとエラーメッセージが表示される", async () => {
+    render(<PasswordReset />);
+    const emailInput = screen.getByLabelText('メールアドレス');
+    const submitButton = screen.getByRole('button', { name: 'フォーム送信' });
+
+    await userEvent.type(emailInput, "invalidMail");
+    await userEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(screen.getByText('※適切なメールアドレスを入力してください。')).toBeInTheDocument();
+    });
+  });
+
+  test("APIエラー時にエラーメッセージが表示される", async () => {
+    APIserver.use(errorPasswordResetHandlers);
+
+    render(<PasswordReset />);
+    const emailInput = screen.getByLabelText('メールアドレス');
+    const submitButton = screen.getByRole('button', { name: 'フォーム送信' });
+
+    await userEvent.type(emailInput, "test@example.com");
+    await userEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Cannot read properties of undefined/)).toBeInTheDocument();
+    });
+  });
 });

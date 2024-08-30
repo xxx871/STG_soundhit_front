@@ -31,9 +31,12 @@ const createMockSearchParams = () => ({
 
 export const mockSearchParams = createMockSearchParams();
 
+export const mockRedirect = vi.fn();
+
 vi.mock('next/navigation', () => ({
   useRouter: () => mockRouter,
   useSearchParams: () => mockSearchParams,
+  redirect: (url: string) => mockRedirect(url),
 }));
 
 vi.mock('next/headers', () => ({
