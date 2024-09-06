@@ -1,20 +1,29 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import * as Tone from 'tone';
 
 export const useKeyboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const synth = new Tone.Synth().toDestination();
+  const synth = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return new Tone.Synth().toDestination();
+    }
+    return null;
+  }, []);
 
   const openModal = useCallback(() => setIsModalOpen(true), []);
   const closeModal = useCallback(() => setIsModalOpen(false), []);
 
   const handleKeyPress = useCallback(async (frequency: number) => {
-    await Tone.start();
-    synth.triggerAttackRelease(frequency, '8n');
+    if (synth) {
+      await Tone.start();
+      synth.triggerAttackRelease(frequency, '8n');
+    }
   }, [synth]);
 
   const handleKeyRelease = useCallback(() => {
-    synth.triggerRelease();
+    if (synth) {
+      synth.triggerRelease();
+    }
   }, [synth]);
 
   return {

@@ -51,7 +51,7 @@ export const setupProfileMock = (profileType: 'base' | 'withGender' | 'withNotes
 };
 
 //プロフィールページテスト用
-const userData = {
+export const userData = {
   id: 1,
   name: 'test',
   email: 'test@example.com',
