@@ -56,11 +56,11 @@ export const useEditForm = (userData: User | null, notes: Note[]) => {
       setIsLoading(false);
       return;
     }
-    
     router.push("/profile");
     router.refresh();
-    } catch (error: any) {
-      setErrorMessage(error.message || "エラーが発生しました。");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setErrorMessage('正常に送信できませんでした');
     } finally {
       setIsLoading(false);
     }

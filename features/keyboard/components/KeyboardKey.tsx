@@ -1,5 +1,5 @@
+import React, { useCallback } from "react";
 import { Note } from "@/types/interface";
-import React from "react";
 import { getKeyStyle } from "@/features/keyboard/components/styles";
 
 interface KeyboardKeyProps {
@@ -8,36 +8,25 @@ interface KeyboardKeyProps {
   onKeyRelease: () => void;
 }
 
-const KeyboardKey: React.FC<KeyboardKeyProps> = ({ note, onKeyPress, onKeyRelease }) => {
+const KeyboardKey: React.FC<KeyboardKeyProps> = React.memo(({ note, onKeyPress, onKeyRelease }) => {
   const isBlackKey = note.en_note_name.includes('#');
   const keyStyle = getKeyStyle(isBlackKey);
 
-  const getLabelStyle = (isBlackKey: boolean) => {
-    const commonStyle = {
-      position: 'absolute' as const,
-      bottom: '5px',
-      left: '0',
-      right: '0',
-      textAlign: 'center' as const,
-    };
+  const handleMouseDown = useCallback(() => onKeyPress(note.frequency), [note.frequency, onKeyPress]);
 
-    if (isBlackKey) {
-      return {
-        ...commonStyle,
-        fontSize: '8px',
-        color: 'white',
-      };
-    } else {
-      return {
-        ...commonStyle,
-        fontSize: '12px',
-        color: 'black',
-      };
-    }
-  };
+  const getLabelStyle = (isBlackKey: boolean) => ({
+    position: 'absolute' as const,
+    bottom: '5px',
+    left: '0',
+    right: '0',
+    textAlign: 'center' as const,
+    fontSize: isBlackKey ? '8px' : '12px',
+    color: isBlackKey ? 'white' : 'black',
+  });
 
   return (
     <div
+      data-testid={`key-${note.ja_note_name}`}
       style={{
         ...keyStyle,
         position: 'relative',
@@ -45,7 +34,7 @@ const KeyboardKey: React.FC<KeyboardKeyProps> = ({ note, onKeyPress, onKeyReleas
         justifyContent: 'center',
         alignItems: 'flex-end',
       }}
-      onMouseDown={() => onKeyPress(note.frequency)}
+      onMouseDown={handleMouseDown}
       onMouseUp={onKeyRelease}
       onMouseLeave={onKeyRelease}
     >
@@ -54,6 +43,8 @@ const KeyboardKey: React.FC<KeyboardKeyProps> = ({ note, onKeyPress, onKeyReleas
       </span>
     </div>
   );
-};
+});
+
+KeyboardKey.displayName = 'KeyboardKey';
 
 export default KeyboardKey;
