@@ -25,6 +25,7 @@ export const mockRouter = createMockRouter();
 const createMockSearchParams = () => ({
   get: vi.fn((param) => {
     if (param === 'modeId') return '1';
+    if (param === 'difficultyId') return '2';
     return null;
   }),
 });

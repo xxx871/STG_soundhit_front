@@ -54,6 +54,30 @@ describe('ヘッダー', () => {
     expect(screen.getByText("練習")).toBeInTheDocument();
   });
 
+  test("'遊び方'モーダルで'通常'ボタンをクリックすると通常モードの説明が開く", async () => {
+    render(await Header());
+    await userEvent.click(screen.getByText("遊び方"));
+    expect(screen.getByText("通常")).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: '通常' }));
+    expect(screen.getByText("通常モード(選択画面)")).toBeInTheDocument();
+  });
+
+  test("'遊び方'モーダルで'ハモり'ボタンをクリックするとハモりモードの説明が開く", async () => {
+    render(await Header());
+    await userEvent.click(screen.getByText("遊び方"));
+    expect(screen.getByText("ハモり")).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'ハモり' }));
+    expect(screen.getByText("ハモりモード")).toBeInTheDocument();
+  });
+
+  test("'遊び方'モーダルで'練習'ボタンをクリックすると練習モードの説明が開く", async () => {
+    render(await Header());
+    await userEvent.click(screen.getByText("遊び方"));
+    expect(screen.getByText("練習")).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: '練習' }));
+    expect(screen.getByText("練習モード")).toBeInTheDocument();
+  });
+
   test("ログアウトボタンをクリックするとログアウト処理が実行され、ログインボタンが表示される", async () => {
     render(await Header());
     const logoutButton = screen.getByRole('button', { name: 'ログアウト' });

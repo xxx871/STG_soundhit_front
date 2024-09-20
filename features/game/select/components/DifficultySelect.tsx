@@ -9,7 +9,7 @@ interface DifficultSelectProps {
 const DifficultySelect = ({ difficulties, onSelect }: DifficultSelectProps) => {
   return (
     <Select onValueChange={onSelect}>
-      <SelectTrigger className="w-full text-lg text-center justify-center mt-1" data-testId="difficulty-select">
+      <SelectTrigger className="w-full text-lg text-center justify-center mt-1" data-testid="difficulty-select">
         <SelectValue placeholder="難易度を選択してください" />
       </SelectTrigger>
       <SelectContent className="w-60">
