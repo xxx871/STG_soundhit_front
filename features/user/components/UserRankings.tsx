@@ -16,14 +16,21 @@ const UserRankings: React.FC<UserRankingsProps> = ({ modes, difficulties }) => {
   const [selectedDifficulty, setSelectedDifficulty] = useState<number | null>(null);
   const [rankings, setRankings] = useState<RankingEntry[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (selectedMode !== null && selectedDifficulty !== null) {
       const getUsersRanking = async () => {
         setIsLoading(true);
-        const rankingData = await getRanking(selectedMode, selectedDifficulty);
-        setRankings(rankingData);
-        setIsLoading(false);
+        setError(null);
+        try {
+          const rankingData = await getRanking(selectedMode, selectedDifficulty);
+          setRankings(rankingData);
+          setIsLoading(false);
+        } catch (error) {
+          setIsLoading(false);
+          setError("ランキングデータの取得に失敗しました。");
+        }
       };
 
       getUsersRanking();
@@ -37,7 +44,7 @@ const UserRankings: React.FC<UserRankingsProps> = ({ modes, difficulties }) => {
         <div>
           <label>モード</label>
           <Select onValueChange={(value) => setSelectedMode(Number(value))}>
-            <SelectTrigger className="text-lg text-black w-40">
+            <SelectTrigger className="text-lg text-black w-40" data-testid="mode-select">
               <SelectValue placeholder="モード選択" />
             </SelectTrigger>
             <SelectContent>
@@ -54,7 +61,7 @@ const UserRankings: React.FC<UserRankingsProps> = ({ modes, difficulties }) => {
         <div>
           <label>難易度</label>
           <Select onValueChange={(value) => setSelectedDifficulty(Number(value))}>
-            <SelectTrigger className="text-lg text-black w-40">
+            <SelectTrigger className="text-lg text-black w-40" data-testid="difficulty-select">
               <SelectValue placeholder="難易度選択" />
             </SelectTrigger>
             <SelectContent>
@@ -72,6 +79,8 @@ const UserRankings: React.FC<UserRankingsProps> = ({ modes, difficulties }) => {
       <div className="mt-8 text-2xl">
         {isLoading ? (
           <Icon.spinner className="animate-spin" />
+        ) : error ? (
+          <p className="text-white">{error}</p>
         ) : rankings.length > 0 ? (
           rankings.map((ranking, index) => (
             <div key={index} className="mb-2">
